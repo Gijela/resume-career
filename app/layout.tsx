@@ -1,8 +1,8 @@
 import BaiDuAnalytics from "@/app/BaiDuAnalytics";
 import GoogleAnalytics from "@/app/GoogleAnalytics";
+import CareerInfoProvider from "@/components/CareerInfoProvider";
 import { TailwindIndicator } from "@/components/TailwindIndicator";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import { siteConfig } from "@/config/site";
 import { defaultLocale } from "@/lib/i18n";
@@ -13,7 +13,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/react";
 import { Viewport } from "next";
 import { Inter as FontSans } from "next/font/google";
-
 export const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -57,8 +56,10 @@ export default async function RootLayout({
             enableSystem
           >
             <Header />
-            <main className="flex flex-col items-center py-6">{children}</main>
-            <Footer />
+            <main className="flex flex-col items-center py-6">
+              <CareerInfoProvider>{children}</CareerInfoProvider>
+            </main>
+            {/* <Footer /> */}
             <Analytics />
             <TailwindIndicator />
           </ThemeProvider>

@@ -1,4 +1,4 @@
-import { TCareerDataItem } from "@/app/[lang]/add/page";
+import { TCareerDataItem } from "@/components/CareerInfoProvider";
 import { createClient } from "@supabase/supabase-js";
 import { NextRequest } from "next/server";
 

@@ -2,7 +2,7 @@
 import HeaderLinks from "@/components/header/HeaderLinks";
 import { LangSwitcher } from "@/components/header/LangSwitcher";
 import { siteConfig } from "@/config/site";
-import { localeNames } from "@/lib/i18n";
+import { defaultLocale, localeNames } from "@/lib/i18n";
 import {
   SignInButton,
   SignedIn,
@@ -55,18 +55,17 @@ const Header = () => {
     setShowAnchors(!!showAnchorsFlag);
   }, [pathname]);
 
-  const getHomeHref = () => {
-    if (pathname === "/") {
-      return "/";
-    }
-    // get lang from pathname
+  // get lang from pathname
+  const getLang = () => {
+    if (pathname === "/") return "";
     const matchResult = pathname.match(/^\/([^/]+)/);
-    return matchResult && matchResult.length > 0 ? matchResult[0] : "/";
+    // eg: matchResult = ['/zh', 'zh', index: 0, input: '/zh', groups: undefined]
+    return matchResult?.[1] ?? "";
   };
 
   const CreditNode = ({ extraClass }: { extraClass?: string }) => (
     <Link
-      href={`${getHomeHref()}/price`}
+      href={`/${getLang()}/price`}
       className={`cursor-pointer hover:text-blue-600 ${extraClass}`}
     >
       Credit：{user?.publicMetadata?.credit as number}
@@ -78,7 +77,7 @@ const Header = () => {
       <nav className="relative z-50 flex justify-between">
         <div className="flex items-center md:gap-x-12 md:min-w-96">
           <Link
-            href={getHomeHref()}
+            href={`/${getLang()}`}
             aria-label="Landing Page Boilerplate"
             title="Landing Page Boilerplate"
             className="flex items-center space-x-1 font-bold"
@@ -90,8 +89,13 @@ const Header = () => {
               width={32}
               height={32}
             />
-            <span className="text-gray-950 dark:text-gray-300 hidden md:block">
+            <span className="text-gray-950 dark:text-gray-300 hidden md:block hover:text-blue-600">
               Landing Page
+            </span>
+          </Link>
+          <Link href={`/${getLang() || defaultLocale}/dashboard`}>
+            <span className="font-semibold text-blue-600 ml-4 sm:ml-0">
+              Dashboard
             </span>
           </Link>
         </div>
@@ -149,7 +153,7 @@ const Header = () => {
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <Link
-                      href={getHomeHref()}
+                      href={`/${getLang()}`}
                       aria-label="Landing Page Boilerplate"
                       title="Landing Page Boilerplate"
                       className="inline-flex items-center"
