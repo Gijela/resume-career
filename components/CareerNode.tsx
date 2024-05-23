@@ -5,6 +5,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { TypeLocale, defaultLocale } from "@/lib/i18n";
+import { getLang } from "@/lib/utils";
+import { TypeI18nData } from "@/types/siteConfig";
 import { memo } from "react";
 import type { NodeProps } from "reactflow";
 import { Handle, Position } from "reactflow";
@@ -23,6 +26,27 @@ type CareerNodeProps = {
   roadmap?: { [key: string]: string }[];
 };
 
+const careerNodeLocale: Partial<Record<TypeLocale, TypeI18nData>> = {
+  en: {
+    timeline: "TIMELINE",
+    salary: "SALARY",
+    difficulty: "DIFFICULTY",
+    work_required: "Work Required",
+    question_head_first: "What's a",
+    question_head_second: "Why it's a good fit",
+    roadmap: "Roadmap",
+  },
+  zh: {
+    timeline: "时间线",
+    salary: "薪资",
+    difficulty: "难度",
+    work_required: "需要的工作",
+    question_head_first: "什么是",
+    question_head_second: "为什么合适",
+    roadmap: "学习路线",
+  },
+};
+
 function CareerNode({ data }: NodeProps<CareerNodeProps>) {
   const {
     jobTitle,
@@ -38,7 +62,6 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
   } = data;
   const position = connectPosition === "top" ? Position.Top : Position.Bottom;
 
-  const tempMsg1 = "What's a";
   const tempMsg2 = "Why it's a good fit";
 
   return (
@@ -50,15 +73,21 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
           <p className="mb-4 font-light">{jobDescription}</p>
           <div className="flex flex-col gap-1">
             <div className="flex justify-between">
-              <div className="font-light">TIMELINE:</div>
+              <div className="font-light">
+                {careerNodeLocale[getLang() || defaultLocale]?.timeline}:
+              </div>
               <div className="font-medium text-lg">{timeline}</div>
             </div>
             <div className="flex justify-between">
-              <div className="font-light">SALARY:</div>
+              <div className="font-light">
+                {careerNodeLocale[getLang() || defaultLocale]?.salary}:
+              </div>
               <div className="font-medium text-lg">{salary}</div>
             </div>
             <div className="flex justify-between">
-              <div className="font-light">DIFFICULTY:</div>
+              <div className="font-light">
+                {careerNodeLocale[getLang() || defaultLocale]?.difficulty}:
+              </div>
               <div
                 className={`font-semibold ${
                   difficulty?.toLowerCase() == "low"
@@ -100,9 +129,11 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
               </div>
             </div>
             <div className="flex items-center gap-3 mr-5 mt-3 sm:mt-0">
-              <div className="font-bold">Work Required:</div>
+              <div className="font-bold">
+                {careerNodeLocale[getLang() || defaultLocale]?.work_required}:
+              </div>
               <span className="border rounded-3xl border-gray-200 px-3 py-1 text-sm">
-                {workRequired ?? "10-20 hrs/week"}
+                {workRequired ?? "10-20 hours/week"}
               </span>
             </div>
           </DialogTitle>
@@ -112,7 +143,11 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
           <div className="flex flex-col gap-4 sm:w-2/5">
             <div>
               <h2 className="text-lg font-semibold mb-2">
-                {tempMsg1} {jobTitle}?
+                {
+                  careerNodeLocale[getLang() || defaultLocale]
+                    ?.question_head_first
+                }
+                {jobTitle}?
               </h2>
               <p>
                 {aboutTheRole ??
@@ -125,7 +160,13 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
               </p>
             </div>
             <div>
-              <h2 className="text-lg font-semibold mb-2 mt-6">{tempMsg2}</h2>
+              <h2 className="text-lg font-semibold mb-2 mt-6">
+                {
+                  careerNodeLocale[getLang() || defaultLocale]
+                    ?.question_head_second
+                }
+                ?
+              </h2>
               <ul className="list-disc ml-4">
                 {whyItsagoodfit?.map((reason, index) => (
                   <li key={index}>{reason}</li>
@@ -135,14 +176,13 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
           </div>
           {/* roadmap */}
           <div className="sm:w-3/5">
-            <h2 className="text-lg font-semibold mb-2">Roadmap</h2>
+            <h2 className="text-lg font-semibold mb-2">
+              {careerNodeLocale[getLang() || defaultLocale]?.roadmap}
+            </h2>
             <div className="flex flex-col gap-4 sm:gap-2">
               {roadmap?.map((step, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col sm:flex-row gap-1 sm:gap-3"
-                >
-                  <div className="font-bold sm:font-light min-w-28">
+                <div key={index} className="flex flex-col sm:flex-row">
+                  <div className="font-bold sm:font-light min-w-28 gap-1 sm:gap-0">
                     {Object.keys(step)[0]}:
                   </div>
                   <div>{Object.values(step)[0]}</div>

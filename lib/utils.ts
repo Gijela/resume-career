@@ -1,3 +1,4 @@
+import { TypeLocale } from "@/lib/i18n";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -51,3 +52,12 @@ export function normalizeText(input: string): string {
   // Trim leading/trailing whitespace
   return normalized.trim();
 }
+
+// get lang from pathname
+export const getLang = (): TypeLocale | "" => {
+  const pathname = window.location.pathname;
+  if (pathname === "/") return "";
+  const matchResult = pathname.match(/^\/([^/]+)/);
+  // eg: matchResult = ['/zh', 'zh', index: 0, input: '/zh', groups: undefined]
+  return (matchResult?.[1] as TypeLocale) ?? "";
+};

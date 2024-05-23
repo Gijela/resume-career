@@ -46,17 +46,18 @@ export default function DashBoard({
   const router = useRouter();
   const { user } = useUser();
 
-  const notify = (error: string) => toast.error(`${error} please try again.`);
-
   const findIdealCareer = async () => {
-    await generateCareerInfo(file, additionalContext);
+    if (!user || !user.id) {
+      toast.error(dashBoard.signTip);
+      return;
+    }
+    const data = await generateCareerInfo(file, additionalContext);
 
-    if (curCareerInfo.length > 0 && !loading) {
-      router.push(`/${lang}/career`);
+    if (Array.isArray(data) && data.length > 0) {
+      router.push(`/${lang}/career/${file.uploadId}`);
     } else {
-      notify(error);
+      toast.error("findIdealCareer error, please try again.");
       user && getCareersList(user.id);
-      console.log("🚀 ~ findIdealCareer ~ error:", error);
     }
   };
 
@@ -133,7 +134,10 @@ export default function DashBoard({
             disabled={file.url ? false : true}
           >
             {loading ? (
-              <LoadingDots style="big" color="white" />
+              <>
+                {dashBoard.loadingDotMsg}
+                <LoadingDots style="big" color="white" />
+              </>
             ) : (
               <>{dashBoard.generateBtnMsg}</>
             )}
@@ -142,32 +146,30 @@ export default function DashBoard({
         </div>
 
         {/* list */}
-        {careerList.length > 0 && (
+        {careerList && careerList.length > 0 && (
           <>
             <h1 className="pt-8 text-center text-5xl mb-5 font-bold">
               {dashBoard.selectList_title}
             </h1>
 
-            <div className="flex flex-col gap-4 mx-10 my-5">
-              <div className="flex flex-col shadow-sm border divide-y-2 min-w-[300px] sm:min-w-[800px] mx-auto">
-                {careerList.map((career: TCareerDataItem) => (
-                  <div
-                    key={career.resume_id}
-                    className="flex justify-between cursor-pointer hover:bg-gray-100 hover:dark:bg-gray-900 p-3 transition sm:flex-row flex-col sm:gap-0 gap-3"
-                    onClick={() =>
-                      handleClickResume(career.resume_id, career.resume_data)
-                    }
-                  >
-                    <span className="flex gap-4">
-                      <DocIcon />
-                      <span>{career.resume_Name}</span>
-                    </span>
-                    <span>
-                      {formatDistanceToNow(career.resume_createAt)} ago
-                    </span>
-                  </div>
-                ))}
-              </div>
+            <div className="flex flex-col mx-10 my-5 overflow-auto max-h-[80vh] shadow-sm border divide-y-2 min-w-[300px] sm:min-w-[800px] mx-auto">
+              {careerList.map((career: TCareerDataItem) => (
+                <div
+                  key={career.resume_id}
+                  className="flex justify-between cursor-pointer hover:bg-gray-100 hover:dark:bg-gray-900 p-3 transition sm:flex-row flex-col sm:gap-0 gap-3"
+                  onClick={() =>
+                    handleClickResume(career.resume_id, career.resume_data)
+                  }
+                >
+                  <span className="flex gap-4">
+                    <DocIcon />
+                    <span>{career.resume_Name}</span>
+                  </span>
+                  <span className="text-end sm:text-start">
+                    {formatDistanceToNow(career.resume_createAt)} ago
+                  </span>
+                </div>
+              ))}
             </div>
           </>
         )}

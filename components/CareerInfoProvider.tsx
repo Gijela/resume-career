@@ -1,5 +1,6 @@
 "use client";
 import { IFile } from "@/app/[lang]/dashboard/Board";
+import { getLang } from "@/lib/utils";
 import { useUser } from "@clerk/nextjs";
 import { ReactNode, createContext, useContext, useState } from "react";
 
@@ -25,7 +26,10 @@ export type TCareerDataItem = {
 interface ContextProps {
   curCareerInfo: Partial<finalCareerInfo>[];
   setCurCareerInfo: (info: Partial<finalCareerInfo>[]) => void;
-  generateCareerInfo: (file: IFile, additionalContext: string) => void;
+  generateCareerInfo: (
+    file: IFile,
+    additionalContext: string
+  ) => Promise<Partial<finalCareerInfo>[]>;
   loading: boolean;
   error: string;
   appendCareerIntoSupabase: (careerDataAdded: TCareerDataItem) => void;
@@ -95,13 +99,14 @@ export default function CareerInfoProvider({
         body: JSON.stringify({
           resumeInfo: data,
           context: additionalContext,
+          lang: getLang(),
         }),
       });
 
       if (!response2.ok) {
         setLoading(false);
         setError("Failed to fetch career.");
-        return;
+        return [];
       }
       let data2: finalCareerInfo[] = await response2.json();
       setCurCareerInfo(data2);
@@ -114,10 +119,13 @@ export default function CareerInfoProvider({
         resume_Name: file.fileName,
         resume_data: data2,
       } as TCareerDataItem);
+
+      return data2;
     } catch (errorInfo) {
       setLoading(false);
       console.log("errorInfo: ", errorInfo);
       setError("generateCareerInfo failed.");
+      return [];
     }
   };
 
