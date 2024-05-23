@@ -1,5 +1,5 @@
 "use client";
-import { IFile } from "@/app/[lang]/dashboard/page";
+import { IFile } from "@/app/[lang]/dashboard/Board";
 import { useUser } from "@clerk/nextjs";
 import { ReactNode, createContext, useContext, useState } from "react";
 

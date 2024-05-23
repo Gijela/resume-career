@@ -17,7 +17,7 @@ export function openUrlInNewTab(url: string) {
   a.remove();
 }
 
-export const uploaderOptions = {
+const uploaderOptions = {
   apiKey: !!process.env.NEXT_PUBLIC_BYTESCALE_API_KEY
     ? process.env.NEXT_PUBLIC_BYTESCALE_API_KEY
     : "free",
@@ -31,10 +31,16 @@ export const uploaderOptions = {
     textAlign: "center",
   },
   // tags: ["career_explorer"],
-  locale: {
-    orDragDropFile: "",
-    uploadFileBtn: "Upload your Resume",
-  },
+};
+
+export const getUploaderOptions = (btnMsg: string) => {
+  return {
+    locale: {
+      orDragDropFile: "",
+      uploadFileBtn: btnMsg,
+    },
+    ...uploaderOptions,
+  };
 };
 
 export function normalizeText(input: string): string {

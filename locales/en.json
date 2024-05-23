@@ -39,5 +39,14 @@
   },
   "CTAButton": {
     "title": "Get Boilerplate"
+  },
+  "dashboard": {
+    "title": "Explore careers through resume",
+    "desc": "Upload your resume to get started and add any extra context below. We'll analyze your resume along with the interests you provide and provide you with 6 personalized career paths for you.",
+    "uploadBtnMsg": "Upload your Resume",
+    "add_placeHolder": "Describe any of your career interests and passions. This will help us match you with the right job paths (optional).",
+    "generateBtnMsg": "Find your ideal career",
+    "cost_msg": "1 credit cost",
+    "selectList_title": "Or examine a career twice"
   }
 }

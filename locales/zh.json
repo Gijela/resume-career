@@ -39,5 +39,14 @@
   },
   "CTAButton": {
     "title": "获取模板"
+  },
+  "dashboard": {
+    "title": "上传简历探索职业道路",
+    "desc": "上传您的简历，并在右边输入框添加个人兴趣。AI会分析你的简历和兴趣，为你提供个性化的6个职业道路",
+    "uploadBtnMsg": "上传简历",
+    "add_placeHolder": "描述你感兴趣的职业，这将有助于AI为你找到合适的职业道路",
+    "generateBtnMsg": "开始探索理想职业",
+    "cost_msg": "消耗1积分",
+    "selectList_title": "或再次审视职业道路"
   }
 }

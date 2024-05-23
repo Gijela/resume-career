@@ -38,6 +38,9 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
   } = data;
   const position = connectPosition === "top" ? Position.Top : Position.Bottom;
 
+  const tempMsg1 = "What's a";
+  const tempMsg2 = "Why it's a good fit";
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -109,7 +112,7 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
           <div className="flex flex-col gap-4 sm:w-2/5">
             <div>
               <h2 className="text-lg font-semibold mb-2">
-                What's a {jobTitle}?
+                {tempMsg1} {jobTitle}?
               </h2>
               <p>
                 {aboutTheRole ??
@@ -122,9 +125,7 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
               </p>
             </div>
             <div>
-              <h2 className="text-lg font-semibold mb-2 mt-6">
-                Why it's a good fit
-              </h2>
+              <h2 className="text-lg font-semibold mb-2 mt-6">{tempMsg2}</h2>
               <ul className="list-disc ml-4">
                 {whyItsagoodfit?.map((reason, index) => (
                   <li key={index}>{reason}</li>
