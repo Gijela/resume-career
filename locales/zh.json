@@ -1,22 +1,22 @@
 {
   "Hero": {
-    "title1": "快速构建",
-    "title2": "落地页",
+    "title1": "使用AI为您探索",
+    "title2": "合适的职业",
     "title3": "",
-    "description": "一个免费、开源且强大的落地页模板，适用于各种项目，让你在一个小时内搭建落地页。"
+    "description": "基于您的技能和兴趣， AI 会在几秒钟内探索可能适合您的职业"
   },
   "SocialProof": {
-    "maker": "制作者快速开发"
+    "maker": "求职者正在使用"
   },
   "Feature": {
     "title": "Feature"
   },
   "Pricing": {
     "title": "定价",
-    "title2": "拥有无限访问权限",
-    "description": "你当前查看的页面是一个开源的、免费的模板。",
-    "doYouLike": "你喜欢这个落地页模板吗？",
-    "follow": "关注我的推特。"
+    "title2": "",
+    "description": "",
+    "doYouLike": "",
+    "follow": ""
   },
   "WallOfLove": {
     "title": "Wall of Love",
@@ -29,16 +29,16 @@
     "description": "这里有一些最常见的问题。"
   },
   "CTA": {
-    "title": "立即构建你的落地页",
-    "description1": "构建",
-    "description2": "你的落地页，",
-    "description3": "展示",
-    "description4": "你的产品，并开始",
-    "description5": "赚取收入",
+    "title": "立即开始探索",
+    "description1": "上传",
+    "description2": "简历，",
+    "description3": "描述",
+    "description4": "兴趣，得到合适的",
+    "description5": "职业推荐",
     "description6": "！"
   },
   "CTAButton": {
-    "title": "获取模板"
+    "title": "立刻探索"
   },
   "dashboard": {
     "title": "上传简历探索职业道路",

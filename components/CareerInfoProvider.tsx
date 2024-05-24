@@ -1,8 +1,19 @@
 "use client";
 import { IFile } from "@/app/[lang]/dashboard/Board";
+import {
+  appendCareerDataByResumeId,
+  appendResumeList,
+  getResumeList,
+} from "@/lib/service/supabase";
 import { getLang } from "@/lib/utils";
 import { useUser } from "@clerk/nextjs";
-import { ReactNode, createContext, useContext, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 export interface finalCareerInfo {
   jobTitle: string;
@@ -16,26 +27,21 @@ export interface finalCareerInfo {
   roadmap: { [key: string]: string }[];
 }
 
-export type TCareerDataItem = {
+export type TResumeItem = {
   resume_id: string;
   resume_createAt: number;
   resume_Name: string;
-  resume_data: finalCareerInfo[];
+  resume_url: string;
 };
 
 interface ContextProps {
-  curCareerInfo: Partial<finalCareerInfo>[];
-  setCurCareerInfo: (info: Partial<finalCareerInfo>[]) => void;
   generateCareerInfo: (
     file: IFile,
     additionalContext: string
   ) => Promise<Partial<finalCareerInfo>[]>;
   loading: boolean;
-  error: string;
-  appendCareerIntoSupabase: (careerDataAdded: TCareerDataItem) => void;
-  getCareersByUserId: (userId: string) => Promise<TCareerDataItem[] | string>;
+  resumeList: TResumeItem[];
 }
-
 const CareerInfoContext = createContext<ContextProps>({} as ContextProps);
 
 export default function CareerInfoProvider({
@@ -44,102 +50,78 @@ export default function CareerInfoProvider({
   children: ReactNode;
 }) {
   const { user } = useUser();
-  const [curCareerInfo, setCurCareerInfo] = useState<
-    Partial<finalCareerInfo>[]
-  >([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
-
-  const appendCareerIntoSupabase = async (careerDataAdded: TCareerDataItem) => {
-    try {
-      await fetch("/api/supabase/addCareersByUserId", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userId: user?.id,
-          careerDataAdded,
-        }),
-      });
-    } catch (error) {
-      console.log("/api/supabase/addCareersByUserId Error:", error);
-    }
-  };
-
-  // all career data from supabase by userId
-  const getCareersByUserId = async (userId: string) => {
-    const response = await fetch("/api/supabase/getCareersByUserId", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId }),
-    });
-    const { data }: { data: TCareerDataItem[] | string } =
-      await response.json();
-
-    return data;
-  };
+  const [resumeList, setResumeList] = useState<TResumeItem[]>([]);
 
   // generate career info from url(one resume)
   const generateCareerInfo = async (file: IFile, additionalContext: string) => {
     setLoading(true);
     try {
-      let response = await fetch("/api/career/parsePdf", {
+      let parsePdfResponse = await fetch("/api/career/parsePdf", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ resumeUrl: file.url }),
       });
-      let data = await response.json();
+      let parsePdfData = await parsePdfResponse.json();
 
-      let response2 = await fetch("/api/career/getCareers", {
+      let getCareersResponse = await fetch("/api/career/getCareers", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          resumeInfo: data,
+          resumeInfo: parsePdfData,
           context: additionalContext,
           lang: getLang(),
         }),
       });
 
-      if (!response2.ok) {
+      if (!getCareersResponse.ok) {
         setLoading(false);
-        setError("Failed to fetch career.");
         return [];
       }
-      let data2: finalCareerInfo[] = await response2.json();
-      setCurCareerInfo(data2);
+      let careersData: finalCareerInfo[] = await getCareersResponse.json();
       setLoading(false);
 
-      // put data2 into supabase
-      await appendCareerIntoSupabase({
+      const newResumeInfo: TResumeItem = {
         resume_id: file.uploadId,
         resume_createAt: file.createAt,
         resume_Name: file.fileName,
-        resume_data: data2,
-      } as TCareerDataItem);
+        resume_url: file.url,
+      };
+      setResumeList([newResumeInfo, ...resumeList]);
+      console.log("🚀 ~ generateCareerInfo ~ newResumeInfo:", newResumeInfo);
 
-      return data2;
+      // put data into supabase table userId_resumeData
+      await appendResumeList(user!.id, newResumeInfo);
+
+      // put data into supabase table resumeId_careersData
+      await appendCareerDataByResumeId(file.uploadId, careersData);
+
+      return careersData;
     } catch (errorInfo) {
       setLoading(false);
       console.log("errorInfo: ", errorInfo);
-      setError("generateCareerInfo failed.");
       return [];
     }
   };
 
+  const initResumeList = async (userId: string) => {
+    const resumeListData = await getResumeList(userId);
+    setResumeList(resumeListData);
+  };
+
+  useEffect(() => {
+    if (user && !resumeList.length) {
+      initResumeList(user.id);
+    }
+  }, [user]);
+
   return (
     <CareerInfoContext.Provider
-      value={{
-        curCareerInfo,
-        setCurCareerInfo,
-        generateCareerInfo,
-        loading,
-        error,
-        appendCareerIntoSupabase,
-        getCareersByUserId,
-      }}
+      value={{ generateCareerInfo, loading, resumeList }}
     >
       {children}
     </CareerInfoContext.Provider>

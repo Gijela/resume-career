@@ -7,11 +7,9 @@ import {
   CardFooter,
   CardHeader,
   Divider,
-  Link,
   Spacer,
 } from "@nextui-org/react";
 
-import { siteConfig } from "@/config/site";
 import { ALL_TIERS } from "@/config/tiers";
 import { createPaySession } from "@/lib/createPaySession";
 import { openUrlInNewTab } from "@/lib/utils";
@@ -109,7 +107,7 @@ const Pricing = ({
         ))}
       </div>
       <Spacer y={12} />
-      <div className="flex py-2">
+      {/* <div className="flex py-2">
         <p className="text-default-400 text-center">
           {locale.doYouLike}&nbsp;
           <Link
@@ -121,7 +119,7 @@ const Pricing = ({
             {locale.follow}
           </Link>
         </p>
-      </div>
+      </div> */}
     </section>
   );
 };

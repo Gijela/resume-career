@@ -86,27 +86,26 @@ const initialNodes: Node[] = [
   },
 ];
 
-export const getInitNodes = (theme: string): Node[] => {
-  const mainNodeStyle =
-    theme === "dark"
-      ? {
-          background: "rgb(209 213 219)",
-          color: "black",
-        }
-      : {
-          background: "black",
-          color: "white",
-        };
-
-  return [
+export const getInitNodes = (
+  theme: string,
+  effectCareersNum: number
+): Node[] => {
+  const rowInitNodes = [
     {
       id: "1",
       position: { x: 650, y: 450 },
       data: { label: "Careers" },
-      style: { ...mainNodeStyle, fontSize: "24px" },
+      style: {
+        background: theme === "dark" ? "rgb(209 213 219)" : "black",
+        color: theme === "dark" ? "black" : "white",
+        fontSize: "24px",
+      },
     },
     ...initialNodes,
   ];
+  rowInitNodes.length = effectCareersNum + 1;
+
+  return rowInitNodes;
 };
 
 const initialEdges = [
@@ -148,10 +147,14 @@ const initialEdges = [
   },
 ];
 
-export const getInitEdges = (theme: string) => {
+export const getInitEdges = (theme: string, effectCareersNum: number) => {
   const style =
     theme === "dark" ? { stroke: "rgb(209 213 219)" } : { stroke: "#000" };
-  return initialEdges.map((item) => ({ ...item, style }));
+
+  const edges = initialEdges.map((item) => ({ ...item, style }));
+  edges.length = effectCareersNum + 1;
+
+  return edges;
 };
 
 export type InItEdgesProp = ReturnType<typeof getInitEdges>;

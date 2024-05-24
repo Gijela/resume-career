@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  TCareerDataItem,
-  finalCareerInfo,
-  useCareerInfo,
-} from "@/components/CareerInfoProvider";
+import { TResumeItem, useCareerInfo } from "@/components/CareerInfoProvider";
 import DocIcon from "@/components/ui/DocIcon";
 import { Button } from "@/components/ui/button";
 import LoadingDots from "@/components/ui/loadingdots";
@@ -15,7 +11,7 @@ import { UploadDropzone } from "@bytescale/upload-widget-react";
 import { useUser } from "@clerk/nextjs";
 import { formatDistanceToNow } from "date-fns";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 export interface IFile {
   url: string;
@@ -32,17 +28,8 @@ export default function DashBoard({
   dashBoard: { [key: string]: string };
 }) {
   const [file, setFile] = useState<IFile>({} as IFile);
-  const {
-    curCareerInfo,
-    setCurCareerInfo,
-    generateCareerInfo,
-    loading,
-    error,
-    getCareersByUserId,
-  } = useCareerInfo();
+  const { generateCareerInfo, loading, resumeList } = useCareerInfo();
   const [additionalContext, setAdditionalContext] = useState<string>("");
-  const [careerList, setCareerList] = useState<TCareerDataItem[]>([]);
-
   const router = useRouter();
   const { user } = useUser();
 
@@ -51,40 +38,14 @@ export default function DashBoard({
       toast.error(dashBoard.signTip);
       return;
     }
-    const data = await generateCareerInfo(file, additionalContext);
+    const careersData = await generateCareerInfo(file, additionalContext);
 
-    if (Array.isArray(data) && data.length > 0) {
+    if (Array.isArray(careersData) && careersData.length > 0) {
       router.push(`/${lang}/career/${file.uploadId}`);
     } else {
       toast.error("findIdealCareer error, please try again.");
-      user && getCareersList(user.id);
     }
   };
-
-  const getCareersList = async (userId: string) => {
-    const careersData = await getCareersByUserId(userId);
-    if (typeof careersData === "string") {
-      console.log(careersData);
-      return;
-    }
-
-    console.log("🚀 ~ getCareersList ~ careersData:", careersData);
-    setCareerList(careersData);
-  };
-
-  const handleClickResume = (
-    resumeId: string,
-    resumeData: finalCareerInfo[]
-  ) => {
-    setCurCareerInfo(resumeData);
-    router.push(`/${lang}/career/${resumeId}`);
-  };
-
-  useEffect(() => {
-    if (user) {
-      getCareersList(user.id);
-    }
-  }, [user]);
 
   return (
     <div>
@@ -146,27 +107,27 @@ export default function DashBoard({
         </div>
 
         {/* list */}
-        {careerList && careerList.length > 0 && (
+        {resumeList && resumeList.length > 0 && (
           <>
             <h1 className="pt-8 text-center text-5xl mb-5 font-bold">
               {dashBoard.selectList_title}
             </h1>
 
             <div className="flex flex-col mx-10 my-5 overflow-auto max-h-[80vh] shadow-sm border divide-y-2 min-w-[300px] sm:min-w-[800px] mx-auto">
-              {careerList.map((career: TCareerDataItem) => (
+              {resumeList.map((resume: TResumeItem) => (
                 <div
-                  key={career.resume_id}
+                  key={resume.resume_id}
                   className="flex justify-between cursor-pointer hover:bg-gray-100 hover:dark:bg-gray-900 p-3 transition sm:flex-row flex-col sm:gap-0 gap-3"
                   onClick={() =>
-                    handleClickResume(career.resume_id, career.resume_data)
+                    router.push(`/${lang}/career/${resume.resume_id}`)
                   }
                 >
                   <span className="flex gap-4">
                     <DocIcon />
-                    <span>{career.resume_Name}</span>
+                    <span>{resume.resume_Name}</span>
                   </span>
                   <span className="text-end sm:text-start">
-                    {formatDistanceToNow(career.resume_createAt)} ago
+                    {formatDistanceToNow(resume.resume_createAt)} ago
                   </span>
                 </div>
               ))}

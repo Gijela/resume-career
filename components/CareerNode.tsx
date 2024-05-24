@@ -32,7 +32,7 @@ const careerNodeLocale: Partial<Record<TypeLocale, TypeI18nData>> = {
     salary: "SALARY",
     difficulty: "DIFFICULTY",
     work_required: "Work Required",
-    question_head_first: "What's a",
+    question_head_first: "What's a ",
     question_head_second: "Why it's a good fit",
     roadmap: "Roadmap",
   },
@@ -40,7 +40,7 @@ const careerNodeLocale: Partial<Record<TypeLocale, TypeI18nData>> = {
     timeline: "时间线",
     salary: "薪资",
     difficulty: "难度",
-    work_required: "需要的工作",
+    work_required: "需要工作",
     question_head_first: "什么是",
     question_head_second: "为什么合适",
     roadmap: "学习路线",
@@ -62,12 +62,14 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
   } = data;
   const position = connectPosition === "top" ? Position.Top : Position.Bottom;
 
-  const tempMsg2 = "Why it's a good fit";
+  const handleClickRoadStep = () => {
+    alert("详细指导部分，敬请期待~");
+  };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="border border-gray-300 rounded-2xl py-4 px-7 max-w-[350px] bg-gray-50 dark:bg-gray-800">
+        <div className="border-[2px] border-blue-700 rounded-2xl py-4 px-7 max-w-[350px] bg-gray-50 dark:bg-gray-800">
           <Handle type="target" position={position} />
           <h1 className="text-2xl font-bold mb-2">{jobTitle}</h1>
           <p className="mb-4 font-light">{jobDescription}</p>
@@ -181,11 +183,25 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
             </h2>
             <div className="flex flex-col gap-4 sm:gap-2">
               {roadmap?.map((step, index) => (
-                <div key={index} className="flex flex-col sm:flex-row">
-                  <div className="font-bold sm:font-light min-w-28 gap-1 sm:gap-0">
+                <div
+                  key={index}
+                  className="flex flex-col sm:flex-row cursor-pointer gap-1 sm:gap-3"
+                >
+                  <div
+                    className={`font-bold sm:font-light ${
+                      getLang() === "zh" ? "min-w-20" : "min-w-28"
+                    }`}
+                  >
                     {Object.keys(step)[0]}:
                   </div>
-                  <div>{Object.values(step)[0]}</div>
+                  <div
+                    className={`${
+                      index === 0 ? "text-blue-400" : ""
+                    } hover:text-blue-600`}
+                    onClick={handleClickRoadStep}
+                  >
+                    {Object.values(step)[0]}
+                  </div>
                 </div>
               ))}
             </div>

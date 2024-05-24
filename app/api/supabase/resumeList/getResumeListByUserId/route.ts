@@ -1,3 +1,4 @@
+import { TResumeItem } from "@/components/CareerInfoProvider";
 import { createClient } from "@supabase/supabase-js";
 import { NextRequest } from "next/server";
 
@@ -16,13 +17,17 @@ export async function POST(request: NextRequest) {
   try {
     const supabase = createClient(supabaseUrl, supabaseKey);
     let { data } = await supabase
-      .from("userId_career")
+      .from("userId_resumeData")
       .select("*")
       .eq("user_id", userId);
+    console.log("🚀 ~ POST ~ data:", data);
 
-    return Response.json({ data: data?.[0]?.career_data, status: 200 });
+    return Response.json({
+      data: (data?.[0]?.resume_data || []) as TResumeItem[],
+      status: 200,
+    });
   } catch (error) {
     console.log("🚀 ~ supabase ~ error:", error);
-    return Response.json({ data: `supabase error: ${error}`, status: 500 });
+    return Response.json({ data: [] as TResumeItem[], status: 500 });
   }
 }

@@ -1,12 +1,12 @@
 {
   "Hero": {
-    "title1": "Ship",
-    "title2": "Landing Page",
-    "title3": "Fast",
-    "description": "A free, open-source, and powerful landing page boilerplate, ideal for various projects, enabling you to create a landing page in under an hour."
+    "title1": "Explore",
+    "title2": "suitable occupation",
+    "title3": "for you with AI",
+    "description": "Based on your skills and interests, AI will explore possible careers for you in a matter of seconds"
   },
   "SocialProof": {
-    "maker": "makers ship fast"
+    "maker": "Job seekers are using it"
   },
   "Feature": {
     "title": "Features"
@@ -29,16 +29,16 @@
     "description": "Here are some of the most frequently asked questions."
   },
   "CTA": {
-    "title": "Build Your Landing Page Now",
-    "description1": "Build",
-    "description2": "your landing page,",
-    "description3": "show",
-    "description4": "your product, and",
-    "description5": "start earning",
+    "title": "Start exploring immediately",
+    "description1": "Upload",
+    "description2": "your resume,",
+    "description3": "write",
+    "description4": "your interest, and Get the right",
+    "description5": "job recommendation",
     "description6": "!"
   },
   "CTAButton": {
-    "title": "Get Boilerplate"
+    "title": "begin explore"
   },
   "dashboard": {
     "title": "Explore careers through resume",

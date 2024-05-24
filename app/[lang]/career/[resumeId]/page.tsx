@@ -5,11 +5,12 @@ import {
   getInitEdges,
   getInitNodes,
 } from "@/app/[lang]/career/[resumeId]/config";
-import { useCareerInfo } from "@/components/CareerInfoProvider";
+import { finalCareerInfo } from "@/components/CareerInfoProvider";
 import CareerNode from "@/components/CareerNode";
 import { TypeLocale } from "@/lib/i18n";
+import { getCareersByResumeId } from "@/lib/service/supabase";
 import { useTheme } from "next-themes";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ReactFlow, {
   Controls,
   Node,
@@ -25,12 +26,12 @@ const nodeTypes = {
 } satisfies NodeTypes;
 
 export default function Career({
-  params: { lang },
+  params: { lang, resumeId },
 }: {
-  params: { lang: TypeLocale };
+  params: { lang: TypeLocale; resumeId: string };
 }) {
   const { theme } = useTheme();
-  const { curCareerInfo } = useCareerInfo();
+  const [curCareerInfo, setCurCareerInfo] = useState<finalCareerInfo[]>([]);
   const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>([] as Node[]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<InItEdgesProp>(
     [] as InItEdgesProp
@@ -41,17 +42,20 @@ export default function Career({
     [setEdges]
   );
 
-  useEffect(() => {
-    if (theme) {
-      setNodes(getInitNodes(theme));
-      setEdges(getInitEdges(theme));
-    }
-  }, [theme]);
+  const getCareerDataByResumeId = async (resumeId: string) => {
+    const data: finalCareerInfo[] = await getCareersByResumeId(resumeId);
+    setCurCareerInfo(data);
+  };
 
   useEffect(() => {
-    if (!theme) return;
-    const Nodes = getInitNodes(theme);
-    const filterCareerInfo = curCareerInfo.filter((item) => {
+    getCareerDataByResumeId(resumeId);
+  }, [resumeId]);
+
+  // filter effective career data <= roadmap and whyItsagoodfit has effect value
+  const filterEffectCareer = (careerInfo: Partial<finalCareerInfo>[]) => {
+    if (careerInfo.length === 0) return careerInfo;
+
+    const filterCareerInfo = careerInfo.filter((item) => {
       if (Object.keys(item).length > 0) {
         let flag = false;
         item.roadmap?.forEach((road) => {
@@ -65,8 +69,26 @@ export default function Career({
         return false;
       }
     });
+
+    return filterCareerInfo;
+  };
+
+  useEffect(() => {
+    if (theme && curCareerInfo.length) {
+      const filterCareerInfo = filterEffectCareer(curCareerInfo);
+
+      setNodes(getInitNodes(theme, filterCareerInfo.length));
+      setEdges(getInitEdges(theme, filterCareerInfo.length));
+    }
+  }, [theme, curCareerInfo]);
+
+  useEffect(() => {
+    if (!theme) return;
+    const filterCareerInfo = filterEffectCareer(curCareerInfo);
+    const Nodes = getInitNodes(theme, filterCareerInfo.length);
     Nodes.length = filterCareerInfo.length + 1;
 
+    // render nodes control
     const curNodes = Nodes.map((node) => {
       if (node.id === "1") {
         node.data = {
