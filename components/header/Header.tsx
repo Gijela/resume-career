@@ -1,4 +1,5 @@
 "use client";
+import { useHeaderHeight } from "@/components/HeaderProvider";
 import HeaderLinks from "@/components/header/HeaderLinks";
 import { LangSwitcher } from "@/components/header/LangSwitcher";
 import { siteConfig } from "@/config/site";
@@ -14,7 +15,7 @@ import { MenuIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { ThemedButton } from "../ThemedButton";
 
@@ -42,6 +43,8 @@ const Header = () => {
   const [showAnchors, setShowAnchors] = useState(false);
   const pathname = usePathname();
   const { user } = useUser();
+  const headerRef = useRef(null);
+  const { setHeaderHeight } = useHeaderHeight();
 
   useEffect(() => {
     if (pathname === "/") {
@@ -54,6 +57,14 @@ const Header = () => {
     );
     setShowAnchors(!!showAnchorsFlag);
   }, [pathname]);
+
+  useEffect(() => {
+    if (headerRef.current) {
+      setHeaderHeight(
+        (headerRef.current as { offsetHeight: number }).offsetHeight
+      );
+    }
+  }, []);
 
   // get lang from pathname
   const getLang = () => {
@@ -73,7 +84,10 @@ const Header = () => {
   );
 
   return (
-    <header className="py-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <header
+      ref={headerRef}
+      className="py-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+    >
       <nav className="relative z-50 flex justify-between">
         <div className="flex items-center md:gap-x-12 md:min-w-96">
           <Link

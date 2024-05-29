@@ -1,8 +1,10 @@
 import BaiDuAnalytics from "@/app/BaiDuAnalytics";
 import GoogleAnalytics from "@/app/GoogleAnalytics";
 import CareerInfoProvider from "@/components/CareerInfoProvider";
+import { HeaderHeightProvider } from "@/components/HeaderProvider";
 import { TailwindIndicator } from "@/components/TailwindIndicator";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { MessagesProvider } from "@/components/chat/MessagesProvider";
 import Header from "@/components/header/Header";
 import { siteConfig } from "@/config/site";
 import { defaultLocale } from "@/lib/i18n";
@@ -55,11 +57,15 @@ export default async function RootLayout({
             defaultTheme={siteConfig.nextThemeColor}
             enableSystem
           >
-            <Header />
-            <main className="flex flex-col items-center py-6">
-              <CareerInfoProvider>{children}</CareerInfoProvider>
-            </main>
-            {/* <Footer /> */}
+            <HeaderHeightProvider>
+              <Header />
+              <main className="flex flex-col items-center">
+                <MessagesProvider>
+                  <CareerInfoProvider>{children}</CareerInfoProvider>
+                </MessagesProvider>
+              </main>
+              {/* <Footer /> */}
+            </HeaderHeightProvider>
             <Analytics />
             <TailwindIndicator />
           </ThemeProvider>

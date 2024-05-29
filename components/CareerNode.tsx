@@ -1,4 +1,8 @@
 import {
+  ChatCompletionRequestMessage,
+  useMessages,
+} from "@/components/chat/MessagesProvider";
+import {
   Dialog,
   DialogContent,
   DialogHeader,
@@ -8,6 +12,7 @@ import {
 import { TypeLocale, defaultLocale } from "@/lib/i18n";
 import { getLang } from "@/lib/utils";
 import { TypeI18nData } from "@/types/siteConfig";
+import { useRouter } from "next/navigation";
 import { memo } from "react";
 import type { NodeProps } from "reactflow";
 import { Handle, Position } from "reactflow";
@@ -47,6 +52,15 @@ const careerNodeLocale: Partial<Record<TypeLocale, TypeI18nData>> = {
   },
 };
 
+const systemContent = {
+  zh: "您是一位杰出的职业指导者，擅长使用有趣和互动的方式去指导别人学习新技能，并且每次指导都会给出相关学习资源和资源链接。",
+  en: `You are an outstanding career coach who is good at using fun and interactive ways to mentor others in learning new skills, and each tutorial provides relevant learning resources and links to them.`,
+};
+const welcomeContent = {
+  zh: "您好，我是您的专属职业技能学习助手, 有什么可以帮助您？",
+  en: "Hello, I am your professional skills learning assistant, how can I help you?",
+};
+
 function CareerNode({ data }: NodeProps<CareerNodeProps>) {
   const {
     jobTitle,
@@ -62,8 +76,26 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
   } = data;
   const position = connectPosition === "top" ? Position.Top : Position.Bottom;
 
-  const handleClickRoadStep = () => {
-    alert("详细指导部分，敬请期待~");
+  const { setMessages, setLearnTarget } = useMessages();
+  const router = useRouter();
+
+  const handleClickRoadStep = (learnTarget: string) => {
+    const lang = (getLang() || defaultLocale) as "en" | "zh";
+    const systemMessage: ChatCompletionRequestMessage = {
+      role: "system",
+      content: systemContent[lang],
+    };
+    const welcomeMessage: ChatCompletionRequestMessage = {
+      role: "assistant",
+      content: welcomeContent[lang],
+    };
+    setMessages([systemMessage, welcomeMessage]);
+    const questionContent = {
+      zh: `我的职业是${jobTitle}，我的学习目标是${learnTarget}请您向我推荐5个视频、5本书籍、5个高质量相关网页，要求将推荐资源的链接返回。`,
+      en: `My job is ${jobTitle}, and my learning target is ${learnTarget} Please recommend 5 videos、5 books、5 high-quality related web pages to me and ask to return links to recommended resources.`,
+    };
+    setLearnTarget(questionContent[lang]);
+    router.push(`/${lang}/chat`);
   };
 
   return (
@@ -198,7 +230,7 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
                     className={`${
                       index === 0 ? "text-blue-400" : ""
                     } hover:text-blue-600`}
-                    onClick={handleClickRoadStep}
+                    onClick={() => handleClickRoadStep(Object.values(step)[0])}
                   >
                     {Object.values(step)[0]}
                   </div>

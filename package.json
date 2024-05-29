@@ -12,10 +12,12 @@
     "dev-webhook": "lt --port 3000 --subdomain metal-wolves-bet"
   },
   "dependencies": {
+    "@apideck/components": "0.12.3",
     "@bytescale/sdk": "3.39.0",
     "@bytescale/upload-widget-react": "4.19.0",
     "@clerk/nextjs": "^5.0.8",
     "@formatjs/intl-localematcher": "^0.5.4",
+    "@fortaine/fetch-event-source": "3.0.6",
     "@nextui-org/react": "^2.2.10",
     "@radix-ui/react-dialog": "1.0.5",
     "@radix-ui/react-select": "^2.0.0",
@@ -28,6 +30,7 @@
     "date-fns": "2.30.0",
     "framer-motion": "^11.0.14",
     "lucide-react": "^0.316.0",
+    "mermaid": "10.6.1",
     "negotiator": "^0.6.3",
     "next": "14.1.0",
     "next-themes": "^0.2.1",
@@ -38,12 +41,20 @@
     "react-fast-marquee": "^1.6.4",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.0.1",
+    "react-markdown": "8.0.7",
     "react-rough-notation": "^1.0.5",
     "reactflow": "11.11.3",
+    "rehype-highlight": "6.0.0",
+    "rehype-katex": "6.0.3",
+    "remark-breaks": "3.0.2",
+    "remark-gfm": "3.0.1",
+    "remark-math": "5.1.1",
+    "sass": "^1.77.2",
     "stripe": "^15.7.0",
     "svix": "^1.24.0",
     "tailwind-merge": "^2.2.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "use-debounce": "9.0.4"
   },
   "devDependencies": {
     "@types/negotiator": "^0.6.3",

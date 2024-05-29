@@ -20,7 +20,6 @@ export async function POST(request: NextRequest) {
       .from("userId_resumeData")
       .select("*")
       .eq("user_id", userId);
-    console.log("🚀 ~ POST ~ data:", data);
 
     return Response.json({
       data: (data?.[0]?.resume_data || []) as TResumeItem[],

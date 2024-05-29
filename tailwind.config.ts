@@ -4,11 +4,12 @@ import type { Config } from "tailwindcss";
 const config = {
   darkMode: "class",
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@apideck/components/**/*.js",
   ],
   prefix: "",
   theme: {
@@ -86,11 +87,12 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "scrolling-banner": "scrolling-banner var(--duration) linear infinite",
-        "scrolling-banner-vertical": "scrolling-banner-vertical var(--duration) linear infinite",
+        "scrolling-banner-vertical":
+          "scrolling-banner-vertical var(--duration) linear infinite",
       },
     },
   },
   plugins: [require("tailwindcss-animate"), nextui()],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;
