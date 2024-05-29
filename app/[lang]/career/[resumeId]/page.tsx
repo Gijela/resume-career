@@ -6,9 +6,11 @@ import {
   getInitNodes,
 } from "@/app/[lang]/career/[resumeId]/config";
 import { finalCareerInfo } from "@/components/CareerInfoProvider";
-import CareerNode from "@/components/CareerNode";
+import CareerNode from "@/components/career/CareerNode";
+import { MobileCareerCard } from "@/components/career/MobileCareerCard";
 import { TypeLocale } from "@/lib/i18n";
 import { getCareersByResumeId } from "@/lib/service/supabase";
+import { isMobile } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { useCallback, useEffect, useState } from "react";
 import ReactFlow, {
@@ -112,18 +114,28 @@ export default function Career({
   }, [curCareerInfo]);
 
   return (
-    <div className="w-screen h-[1200px] mx-auto">
-      <ReactFlow
-        style={{ stroke: "red" }}
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        nodeTypes={nodeTypes}
-      >
-        <Controls />
-      </ReactFlow>
-    </div>
+    <>
+      {isMobile() ? (
+        <div className="w-full p-4 dark:border-t dark:border-gray-800 grid gap-4">
+          {filterEffectCareer(curCareerInfo).map((job) => (
+            <MobileCareerCard lang={lang} job={job} />
+          ))}
+        </div>
+      ) : (
+        <div className="w-screen h-[1200px] mx-auto">
+          <ReactFlow
+            style={{ stroke: "red" }}
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+            nodeTypes={nodeTypes}
+          >
+            <Controls />
+          </ReactFlow>
+        </div>
+      )}
+    </>
   );
 }

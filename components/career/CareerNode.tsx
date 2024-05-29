@@ -31,7 +31,7 @@ type CareerNodeProps = {
   roadmap?: { [key: string]: string }[];
 };
 
-const careerNodeLocale: Partial<Record<TypeLocale, TypeI18nData>> = {
+export const careerNodeLocale: Partial<Record<TypeLocale, TypeI18nData>> = {
   en: {
     timeline: "TIMELINE",
     salary: "SALARY",
@@ -52,11 +52,11 @@ const careerNodeLocale: Partial<Record<TypeLocale, TypeI18nData>> = {
   },
 };
 
-const systemContent = {
+export const systemContent = {
   zh: "您是一位杰出的职业指导者，擅长使用有趣和互动的方式去指导别人学习新技能，并且每次指导都会给出相关学习资源和资源链接。",
   en: `You are an outstanding career coach who is good at using fun and interactive ways to mentor others in learning new skills, and each tutorial provides relevant learning resources and links to them.`,
 };
-const welcomeContent = {
+export const welcomeContent = {
   zh: "您好，我是您的专属职业技能学习助手, 有什么可以帮助您？",
   en: "Hello, I am your professional skills learning assistant, how can I help you?",
 };

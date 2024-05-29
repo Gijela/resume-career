@@ -19,6 +19,7 @@
     "@formatjs/intl-localematcher": "^0.5.4",
     "@fortaine/fetch-event-source": "3.0.6",
     "@nextui-org/react": "^2.2.10",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-dialog": "1.0.5",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",

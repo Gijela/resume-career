@@ -1,5 +1,6 @@
 "use client";
-import { prettyObject } from "@/lib/utils";
+import { defaultLocale } from "@/lib/i18n";
+import { getLang, prettyObject } from "@/lib/utils";
 
 import {
   EventStreamContentType,
@@ -20,6 +21,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import toast from "react-hot-toast";
 
 interface ContextProps {
   replyText: string;
@@ -77,6 +79,16 @@ export function MessagesProvider({ children }: IMessagesProvider) {
 
   // 提问 openAI
   const addMessage = async (content: string) => {
+    if (!messages.length) {
+      const lang = (getLang() || defaultLocale) as "en" | "zh";
+      toast.error(
+        lang === "zh"
+          ? "请从推荐学习路线处跳转进入此页面"
+          : "Please jump from the recommended study route to this page"
+      );
+      return;
+    }
+
     try {
       // 添加问题到 Messages
       const newMessage: ChatCompletionRequestMessage = {

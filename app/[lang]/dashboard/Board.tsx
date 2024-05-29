@@ -113,7 +113,7 @@ export default function DashBoard({
               {dashBoard.selectList_title}
             </h1>
 
-            <div className="flex flex-col mx-10 my-5 overflow-auto max-h-[80vh] shadow-sm border divide-y-2 min-w-[300px] sm:min-w-[800px] mx-auto">
+            <div className="flex flex-col mx-10 my-5 overflow-auto max-h-[80vh] shadow-sm border divide-y-2 min-w-[300px] sm:min-w-[800px]">
               {resumeList.map((resume: TResumeItem) => (
                 <div
                   key={resume.resume_id}

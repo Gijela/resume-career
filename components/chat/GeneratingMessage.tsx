@@ -22,7 +22,7 @@ export default function GeneratingMessage() {
           key={replyText}
         >
           <img
-            src={"/logo.png"}
+            src={"/gpt.png"}
             className="mr-4 w-9 h-9 rounded-full"
             alt="avatar"
           />

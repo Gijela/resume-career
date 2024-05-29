@@ -75,3 +75,8 @@ export function prettyObject(msg: any) {
   }
   return ["```json", msg, "```"].join("\n");
 }
+
+export const isMobile = (): boolean => {
+  const userAgent = navigator.userAgent.toLowerCase();
+  return /iphone|ipad|android/.test(userAgent);
+};
