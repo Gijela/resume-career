@@ -117,8 +117,8 @@ export default function Career({
     <>
       {isMobile() ? (
         <div className="w-full p-4 dark:border-t dark:border-gray-800 grid gap-4">
-          {filterEffectCareer(curCareerInfo).map((job) => (
-            <MobileCareerCard lang={lang} job={job} />
+          {filterEffectCareer(curCareerInfo).map((job, idx) => (
+            <MobileCareerCard key={idx} lang={lang} job={job} />
           ))}
         </div>
       ) : (
