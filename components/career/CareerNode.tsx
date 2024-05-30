@@ -91,8 +91,8 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
     };
     setMessages([systemMessage, welcomeMessage]);
     const questionContent = {
-      zh: `我的职业是${jobTitle}，我的学习目标是${learnTarget}请您向我推荐5个视频、5本书籍、5个高质量相关网页，要求将推荐资源的链接返回。`,
-      en: `My job is ${jobTitle}, and my learning target is ${learnTarget} Please recommend 5 videos、5 books、5 high-quality related web pages to me and ask to return links to recommended resources.`,
+      zh: `我的职业是${jobTitle}，我的学习目标是${learnTarget}请您向我推荐5个视频、5本书籍、5个高质量相关网页的学习资源，要求您必须将每个学习资源的url返回，并且告诉我为什么选用这个学习资源，它能在哪方面给我带来提升。`,
+      en: `My job is ${jobTitle}, and my learning target is ${learnTarget} Please recommend me 5 videos, 5 books, 5 high-quality related web pages of learning resources, you must return the URL of each learning resources, and tell me why to choose this learning resources, in what way does it improve me.`,
     };
     setLearnTarget(questionContent[lang]);
     router.push(`/${lang}/chat`);

@@ -34,7 +34,7 @@ const CTAButton = ({ locale }: { locale: { title: string } }) => {
         </Button>
       </Link>
       <div
-        className="flex gap-2 items-center cursor-pointer"
+        className="flex gap-1 items-center cursor-pointer"
         onClick={handleClickDemo}
       >
         <span className="">
