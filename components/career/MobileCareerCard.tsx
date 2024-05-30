@@ -47,8 +47,8 @@ export function MobileCareerCard({
     };
     setMessages([systemMessage, welcomeMessage]);
     const questionContent = {
-      zh: `我的职业是${job?.jobTitle}，我的学习目标是${learnTarget}请您向我推荐5个视频、5本书籍、5个高质量相关网页，要求将推荐资源的链接返回。`,
-      en: `My job is ${job?.jobTitle}, and my learning target is ${learnTarget} Please recommend 5 videos、5 books、5 high-quality related web pages to me and ask to return links to recommended resources.`,
+      zh: `我的职业是${job?.jobTitle}，我的学习目标是${learnTarget}请您向我推荐5个视频、5本书籍、5个高质量相关网页，要求说明为什么选择这个推荐资源，其能帮助我解决什么问题，同时将推荐资源的链接返回。`,
+      en: `My job is ${job?.jobTitle}, and my learning target is ${learnTarget} Please recommend me 5 videos, 5 books, 5 high-quality related web pages. Please explain why you chose this resource and what it can help me solve, a link to the recommended resource is returned.`,
     };
     setLearnTarget(questionContent[lang as "en" | "zh"]);
     router.push(`/${lang}/chat`);

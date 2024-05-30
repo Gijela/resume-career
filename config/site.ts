@@ -5,10 +5,9 @@ import { SiBuymeacoffee } from "react-icons/si";
 const OPEN_SOURCE_URL = "https://github.com/weijunext/landing-page-boilerplate";
 
 const baseSiteConfig = {
-  name: "Landing page boilerplate",
-  description:
-    "A free, open-source, and powerful landing page boilerplate, ideal for various projects, enabling you to create a landing page in under an hour.",
-  url: "https://landingpage.weijunext.com",
+  name: "Career Explore",
+  description: "Explore your careers in seconds",
+  url: "https://career.zeabur.app",
   ogImage: "https://landingpage.weijunext.com/og.png",
   metadataBase: "/",
   keywords: [

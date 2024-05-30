@@ -23,7 +23,7 @@ export type Tier = {
   title: string;
   price: string;
   priceSuffix?: string;
-  href: string;
+  href?: string;
   description?: string;
   mostPopular?: boolean;
   featured?: boolean;

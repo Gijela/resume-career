@@ -94,7 +94,7 @@ export default function Career({
     const curNodes = Nodes.map((node) => {
       if (node.id === "1") {
         node.data = {
-          label: lang === "zh" ? "职业" : "Careers",
+          label: lang === "zh" ? "工作" : "Careers",
         } as any;
       } else {
         let realdata = filterCareerInfo[Number(node.id) - 2];

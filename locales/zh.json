@@ -1,9 +1,9 @@
 {
   "Hero": {
     "title1": "使用AI探索",
-    "title2": "合适的职业",
+    "title2": "高薪工作",
     "title3": "",
-    "description": "基于您的技能和兴趣， AI 会在几秒钟内探索可能适合您的职业"
+    "description": "几秒钟内，AI 会基于您的技能和兴趣探索适合您的高薪工作"
   },
   "SocialProof": {
     "maker": "求职者正在使用"
@@ -14,7 +14,7 @@
   "Pricing": {
     "title": "定价",
     "title2": "",
-    "description": "",
+    "description": "使用AI探索工作，寻求更多高薪机会",
     "doYouLike": "",
     "follow": ""
   },
@@ -25,7 +25,7 @@
     "description3": "，我会在这里展示你的推文和推荐。"
   },
   "FAQ": {
-    "title": "FAQs",
+    "title": "常见问题",
     "description": "这里有一些最常见的问题。"
   },
   "CTA": {
@@ -34,21 +34,22 @@
     "description2": "简历，",
     "description3": "描述",
     "description4": "兴趣，得到合适的",
-    "description5": "职业推荐",
+    "description5": "高薪工作",
     "description6": "！"
   },
   "CTAButton": {
     "title": "立刻探索"
   },
   "dashboard": {
-    "title": "上传简历探索职业道路",
-    "desc": "上传您的简历，并在右边输入框添加个人兴趣。AI会分析你的简历和兴趣，为你提供个性化的职业道路",
+    "title": "上传简历探索高薪工作",
+    "desc": "上传您的简历，并在右边输入框添加个人兴趣。AI会分析你的简历和兴趣，为你提供个性化的高薪工作",
     "uploadBtnMsg": "上传简历",
-    "add_placeHolder": "描述你感兴趣的职业，这将有助于AI为你找到合适的职业道路",
-    "generateBtnMsg": "开始探索理想职业",
+    "add_placeHolder": "描述你感兴趣的工作，这将有助于AI为你找到合适的高薪工作",
+    "generateBtnMsg": "开始探索高薪工作",
     "cost_msg": "消耗1积分",
-    "selectList_title": "或再次审视职业道路",
+    "selectList_title": "或再次审视高薪工作",
     "signTip": "请先登录~",
+    "lackCredit": "积分不足，请充值~",
     "loadingDotMsg": "AI 正在探索中，请等待15秒"
   }
 }

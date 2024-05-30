@@ -38,9 +38,20 @@ export default function DashBoard({
       toast.error(dashBoard.signTip);
       return;
     }
+    if (Number(user.publicMetadata.credit) <= 0) {
+      toast.error(dashBoard.lackCredit);
+      return;
+    }
     const careersData = await generateCareerInfo(file, additionalContext);
 
     if (Array.isArray(careersData) && careersData.length > 0) {
+      await fetch("/api/clerk/costCredit", {
+        method: "POST",
+        body: JSON.stringify({
+          userId: user?.id,
+          creditCost: 1, // 每次消耗1积分
+        }),
+      });
       router.push(`/${lang}/career/${file.uploadId}`);
     } else {
       toast.error("findIdealCareer error, please try again.");

@@ -1,9 +1,9 @@
 {
   "Hero": {
-    "title1": "Explore",
-    "title2": "suitable occupation",
+    "title1": "explore",
+    "title2": "high salary career",
     "title3": "for you with AI",
-    "description": "Based on your skills and interests, AI will explore possible careers for you in a matter of seconds"
+    "description": "Based on your skills and interests, AI will explore high salary careers for you in a matter of seconds"
   },
   "SocialProof": {
     "maker": "Job seekers are using it"
@@ -13,8 +13,8 @@
   },
   "Pricing": {
     "title": "Pricing",
-    "title2": "Get unlimited access.",
-    "description": "The page you are currently viewing is an open-source, free boilerplate.",
+    "title2": "",
+    "description": "Use AI to explore careers and seek out high salary opportunities",
     "doYouLike": "Do you like this landing page boilerplate?",
     "follow": "Follow my Twitter."
   },
@@ -34,7 +34,7 @@
     "description2": "your resume,",
     "description3": "write",
     "description4": "your interest, and Get the right",
-    "description5": "job recommendation",
+    "description5": "high salary career",
     "description6": "!"
   },
   "CTAButton": {
@@ -49,6 +49,7 @@
     "cost_msg": "1 credit cost",
     "selectList_title": "Or examine a career twice",
     "signTip": "Please sign in to continue",
+    "lackCredit": "Insufficient points, please recharge~",
     "loadingDotMsg": "AI is exploring now, please wait 15 seconds"
   }
 }

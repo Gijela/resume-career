@@ -4,78 +4,84 @@ import { Tier, TiersEnum } from "@/types/pricing";
 export const TIERS_EN: Array<Tier> = [
   {
     key: TiersEnum.Free,
-    title: "Open-Source / Free",
-    price: "Free",
-    href: siteConfig.openSourceURL || "#",
-    description:
-      "Freely clone the landing page boilerplate from the GitHub repository.",
-    features: [
-      "Free",
-      "Access to full code",
-      "Secondary development",
-      "MIT License",
-    ],
-    buttonText: "Get started",
-    buttonColor: "primary",
+    title: "Plan Hobby",
+    price: "$0",
+    description: "Increase 3 Credits, never expires.",
+    features: ["Free", "3 Credits", "Access all functions", "3 trials"],
+    buttonText: "Start",
+    buttonColor: "secondary",
     buttonVariant: "solid",
-    creditAmount: 2, // 添加的积分数
-    priceId: "price_1PHm5LRo4ZPuRCXnMmFUw46r", // [stripe 产品目录]某个产品的价格API ID
   },
   {
-    key: TiersEnum.Customize,
-    title: "Customize",
-    href: siteConfig.authors[0].twitter || "#",
-    description: "Pay to customize an exclusive landing page.",
-    price: "$188",
+    key: TiersEnum.Pro,
+    title: "Plan Pro",
+    price: "$1.99",
+    description: "Increase 10 Credits, never expires.",
     features: [
-      "Access to full code",
-      "Secondary development",
-      "Exclusive style",
-      "One-on-one service",
-      "More exquisite pages",
+      "Various methods of payment",
+      "10 Credits",
+      "Access all functions",
+      "Faster AI processing",
     ],
-    buttonText: "Contact us",
+    buttonText: "buy plan",
     buttonColor: "primary",
     buttonVariant: "solid",
-    creditAmount: 4,
-    priceId: "price_1PI4M1Ro4ZPuRCXnm209bUcp",
+    creditAmount: 10, // [clerk metadata] 添加的积分数
+    priceId: "price_1PM9ovRo4ZPuRCXnlyOSGGXO", // [prod mode] stripe $1.99
+  },
+  {
+    key: TiersEnum.Team,
+    title: "Plan Team",
+    price: "$8.99",
+    description: "Increase 50 Credits, never expires.",
+    features: [
+      "Various methods of payment",
+      "50 Credits",
+      "Access all functions",
+      "Answer one-on-one questions",
+    ],
+    buttonText: "buy plan",
+    buttonColor: "primary",
+    buttonVariant: "solid",
+    creditAmount: 50,
+    priceId: "price_1PMATLRo4ZPuRCXnAbM2pwLP", // [prod mode] stripe $8.99
   },
 ];
 
 export const TIERS_ZH: Array<Tier> = [
   {
     key: TiersEnum.Free,
-    title: "开源 / 免费",
-    price: "免费",
-    href: siteConfig.openSourceURL || "#",
-    description: "可从GitHub仓库免费克隆落地页模板。",
-    features: ["免费", "访问全部代码", "二次开发", "MIT 许可证"],
-    buttonText: "开始",
-    buttonColor: "primary",
+    title: "Hobby 计划",
+    price: "￥0",
+    description: "增加3个积分，永久有效",
+    features: ["免费", "3个积分", "访问全部功能", "3次试用机会"],
+    buttonText: "开始探索",
+    buttonColor: "secondary",
     buttonVariant: "solid",
-    // todo: fix new field i18n
-    creditAmount: 2, // 添加的积分数
-    priceId: "price_1PIZOyRo4ZPuRCXn0qjdbxtC", // test mode [stripe 产品目录]某个产品的价格API ID
-    // priceId: "price_1PIZXvRo4ZPuRCXn7GO0v4ms", // prod mode [stripe 产品目录]某个产品的价格API ID
   },
   {
-    key: TiersEnum.Customize,
-    title: "定制",
-    href: siteConfig.authors[0].twitter || "#",
-    description: "支付定制专属落地页。",
-    price: "$188",
-    features: [
-      "访问全部代码",
-      "二次开发",
-      "独家风格",
-      "一对一服务",
-      "更精致的页面",
-    ],
-    buttonText: "联系我们",
+    key: TiersEnum.Pro,
+    title: "Pro 计划",
+    price: "￥3.69",
+    description: "增加10个积分，永久有效",
+    features: ["支付宝结账", "10个积分", "访问全部功能", "更快的AI处理"],
+    buttonText: "购买",
     buttonColor: "primary",
     buttonVariant: "solid",
-    creditAmount: 4,
-    priceId: "price_1PIZPHRo4ZPuRCXnAJjzp2aG",
+    creditAmount: 10, // [clerk metadata] 添加的积分数
+    priceId: "price_1PMAgTRo4ZPuRCXn7Hjz636h", // [prod mode] stripe ￥3.69
+  },
+  {
+    key: TiersEnum.Team,
+    title: "Team 计划",
+    price: "￥14.69",
+    description: "增加50个积分，永久有效",
+    features: ["支付宝结账", "50个积分", "访问全部功能", "一对一答疑"],
+    buttonText: "购买",
+    buttonColor: "primary",
+    buttonVariant: "solid",
+    creditAmount: 50,
+    priceId: "price_1PMAphRo4ZPuRCXnGguRGiA7", // [prod mode] stripe ￥14.69
   },
 ];
 

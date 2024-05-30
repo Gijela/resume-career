@@ -25,7 +25,10 @@ const links = [
   //   href: "#Features",
   // },
   {
-    label: "Pricing",
+    label: {
+      zh: "定价",
+      en: "Pricing",
+    },
     href: "#Pricing",
   },
   // {
@@ -33,10 +36,26 @@ const links = [
   //   href: "#WallOfLove",
   // },
   {
-    label: "FAQ",
+    label: {
+      zh: "常见问题",
+      en: "FAQ",
+    },
     href: "#FAQ",
   },
 ];
+
+const localeHeader = {
+  zh: {
+    name: "探索高薪工作",
+    dashboard: "控制台",
+    credit: "积分",
+  },
+  en: {
+    name: "Explore high salary Careers",
+    dashboard: "dashboard",
+    credit: "Credit",
+  },
+};
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -79,7 +98,8 @@ const Header = () => {
       href={`/${getLang()}/price`}
       className={`cursor-pointer hover:text-blue-600 ${extraClass}`}
     >
-      Credit：{user?.publicMetadata?.credit as number}
+      {localeHeader[(getLang() || defaultLocale) as "en" | "zh"]?.credit}：
+      {user?.publicMetadata?.credit as number}
     </Link>
   );
 
@@ -99,17 +119,20 @@ const Header = () => {
             <Image
               alt={siteConfig.name}
               src="/logo.svg"
-              className="w-8 h-8"
+              className="w-8 h-8 mr-2"
               width={32}
               height={32}
             />
-            <span className="text-gray-950 dark:text-gray-300 hidden md:block hover:text-blue-600">
-              Landing Page
+            <span className="text-gray-950 dark:text-gray-300 hidden md:block hover:text-blue-600 text-base">
+              {localeHeader[(getLang() || defaultLocale) as "en" | "zh"]?.name}
             </span>
           </Link>
           <Link href={`/${getLang() || defaultLocale}/dashboard`}>
-            <span className="font-semibold text-blue-600 ml-4 sm:ml-0">
-              Dashboard
+            <span className="font-semibold text-blue-600 ml-4 sm:ml-0 text-base">
+              {
+                localeHeader[(getLang() || defaultLocale) as "en" | "zh"]
+                  ?.dashboard
+              }
             </span>
           </Link>
         </div>
@@ -117,14 +140,18 @@ const Header = () => {
         {showAnchors && (
           <ul className="hidden items-center gap-6 md:flex">
             {links.map((link) => (
-              <li key={link.label}>
+              <li key={link.href}>
                 <Link
                   href={link.href}
-                  aria-label={link.label}
-                  title={link.label}
+                  aria-label={
+                    link.label[(getLang() || defaultLocale) as "en" | "zh"]
+                  }
+                  title={
+                    link.label[(getLang() || defaultLocale) as "en" | "zh"]
+                  }
                   className="tracking-wide transition-colors duration-200 font-norma"
                 >
-                  {link.label}
+                  {link.label[(getLang() || defaultLocale) as "en" | "zh"]}
                 </Link>
               </li>
             ))}
@@ -180,7 +207,11 @@ const Header = () => {
                         height={32}
                       />
                       <span className="ml-2 text-xl font-bold tracking-wide text-gray-950 dark:text-gray-300">
-                        Landing Page
+                        {
+                          localeHeader[
+                            (getLang() || defaultLocale) as "en" | "zh"
+                          ]?.name
+                        }
                       </span>
                     </Link>
                   </div>
@@ -199,15 +230,27 @@ const Header = () => {
                   <nav>
                     <ul className="space-y-4">
                       {links.map((link) => (
-                        <li key={link.label}>
+                        <li key={link.href}>
                           <Link
                             href={link.href}
-                            aria-label={link.label}
-                            title={link.label}
+                            aria-label={
+                              link.label[
+                                (getLang() || defaultLocale) as "en" | "zh"
+                              ]
+                            }
+                            title={
+                              link.label[
+                                (getLang() || defaultLocale) as "en" | "zh"
+                              ]
+                            }
                             className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
                             onClick={() => setIsMenuOpen(false)}
                           >
-                            {link.label}
+                            {
+                              link.label[
+                                (getLang() || defaultLocale) as "en" | "zh"
+                              ]
+                            }
                           </Link>
                         </li>
                       ))}

@@ -48,7 +48,7 @@ const MessagesList = () => {
               id={`message-${i}`}
               className={`flex mb-3 fade-up ${
                 !isUser ? "justify-start" : "justify-end"
-              } ${i === 1 ? "max-w-md" : ""}`}
+              }`}
               key={message.content + String(i)}
             >
               {!isUser && (

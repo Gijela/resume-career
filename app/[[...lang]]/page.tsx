@@ -2,7 +2,6 @@ import CTA from "@/components/home/CTA";
 import FAQ from "@/components/home/FAQ";
 import Hero from "@/components/home/Hero";
 import Pricing from "@/components/home/Pricing";
-import ScrollingLogos from "@/components/home/ScrollingLogos";
 import SocialProof from "@/components/home/SocialProof";
 import { defaultLocale, getDictionary } from "@/lib/i18n";
 
@@ -24,7 +23,7 @@ export default async function LangHome({
       <Hero locale={dict.Hero} CTALocale={dict.CTAButton} />
       <SocialProof locale={dict.SocialProof} />
       {/* display technology stack, partners, project honors, etc. */}
-      <ScrollingLogos />
+      {/* <ScrollingLogos /> */}
 
       {/* USP (Unique Selling Proposition) */}
       {/* <Feature id="Features" locale={dict.Feature} langName={langName} /> */}

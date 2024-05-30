@@ -14,6 +14,7 @@ import { ALL_TIERS } from "@/config/tiers";
 import { createPaySession } from "@/lib/createPaySession";
 import { openUrlInNewTab } from "@/lib/utils";
 import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 import { FaCheck } from "react-icons/fa";
 import { RoughNotation } from "react-rough-notation";
 
@@ -27,6 +28,7 @@ const Pricing = ({
   langName: string;
 }) => {
   const { user } = useUser();
+  const router = useRouter();
 
   const TIERS = ALL_TIERS[`TIERS_${langName.toUpperCase()}`];
 
@@ -58,11 +60,11 @@ const Pricing = ({
         <p className="text-large text-default-500">{locale.description}</p>
       </div>
       <Spacer y={8} />
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 justify-items-center">
-        {TIERS?.map((tier) => (
+      <div className="flex flex-col sm:flex-row sm:w-[1050px] sm:justify-between">
+        {TIERS?.map((tier, idx) => (
           <Card
             key={tier.key}
-            className="p-3 flex-1 w-[90%] border-gray-300 shadow-2xl rounded-2xl"
+            className="p-3 border-gray-300 border sm:shadow-2xl rounded-2xl w-80 mt-6 sm:mt-0"
             shadow="md"
           >
             <CardHeader className="flex flex-col items-start gap-2 pb-6">
@@ -97,7 +99,13 @@ const Pricing = ({
                   className="rounded-lg"
                   color={tier.buttonColor}
                   variant={tier.buttonVariant}
-                  onClick={() => handlePay(tier.creditAmount!, tier.priceId!)}
+                  onClick={() => {
+                    if (idx === 0) {
+                      router.push(`/${langName}/dashboard`);
+                    } else {
+                      handlePay(tier.creditAmount!, tier.priceId!);
+                    }
+                  }}
                 >
                   {tier.buttonText}
                 </Button>

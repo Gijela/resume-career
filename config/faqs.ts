@@ -1,126 +1,68 @@
 export const FAQS_EN = [
   {
-    title: "What is a landing page?",
+    title:
+      "I'm concerned about my personal information security. How do you protect user privacy?",
     content:
-      "A landing page is a standalone web page created specifically for a marketing or advertising campaign. It's where a visitor 'lands' after they click on a link in an email, or ads from Google, Bing, YouTube, Facebook, Instagram, Twitter, or similar places on the web. Unlike web pages, which typically have many goals and encourage exploration, landing pages are designed with a single focus or goal, known as a call to action (CTA).",
+      "We take user privacy protection very seriously. All uploaded resumes and personal information are encrypted and stored securely, and we will not disclose any of your information to third parties without your explicit consent.",
   },
   {
-    title: "How can I create a landing page?",
+    title: "Are the job positions recommended really suitable for me?",
     content:
-      "Creating a landing page can be done in several steps: 1) Choose a landing page template that fits your campaign's needs or start from scratch. 2) Identify your landing page's objective and CTA. 3) Write compelling content that urges visitors to take action. 4) Incorporate design elements such as images, videos, and forms that align with your message. 5) Test your page's usability and mobile responsiveness. 6) Use SEO best practices to help your page get found. 7) Publish your landing page and monitor its performance to make adjustments as needed.",
+      "Our AI system strives to accurately analyze your resume and interests to recommend the most suitable job positions for you. However, everyone's career path is unique, and we encourage users to actively explore and discern opportunities based on their actual situation and market demand.",
   },
   {
-    title: "Why is a landing page important?",
+    title: "Which industries do the recommended job positions cover?",
     content:
-      "Landing pages are crucial for any marketing strategy because they provide a targeted platform for converting visitors into leads or customers. Unlike general websites, landing pages focus the visitor's attention on a single offer, minimizing distractions and guiding them towards a specific action. This focused approach can significantly increase the effectiveness of your marketing campaigns, improve your ad performance, and enhance the overall user experience by providing them with the information or solution they were seeking.",
+      "Our system covers a wide range of industries, including but not limited to IT, finance, education, healthcare, and media communications. No matter what your professional background and interests are, you have the opportunity to find suitable job recommendations.",
   },
   {
-    title: "Why choose our landing page boilerplate?",
+    title:
+      "What if the AI-recommended job positions don't match my actual work experience?",
     content:
-      "Our landing page template is free, open-source, and powerful, making it ideal for various projects and marketing campaigns. It allows you to create a landing page in under an hour, simplifying the development process while also offering a high degree of customization and responsiveness.",
+      "Our AI system aims to match your work experience with the recommended positions as accurately as possible. However, if there is a discrepancy, you can manually adjust the keywords in your resume or provide a more detailed description of your work experience to optimize the recommendations.",
   },
   {
-    title: "What skills do I need to use this template?",
+    title:
+      "How do I upload my resume? Are there any requirements for the resume format?",
     content:
-      "To use our landing page template, you only need basic web editing skills. The design of the template is intended to be easy for non-technical users to get started with, while also providing high customizability for experienced developers.",
+      "You can find the 「Upload Resume」 button on the 「Dashboard」 page of our website. After clicking, you can select and upload your resume file. We support the upload of resumes in PDF format.",
   },
   {
-    title: "How do I get started with the landing page template?",
+    title: "Does using this service require a fee?",
     content:
-      "Getting started is very simple. Just download the source code from our GitHub repository, edit the text and images as needed, and then deploy it to your server.",
-  },
-  {
-    title: "Does the landing page template support responsive design?",
-    content:
-      "Yes, our landing page template supports responsive design, ensuring that your webpage displays perfectly on a variety of devices, whether desktop, tablet, or smartphone.",
-  },
-  {
-    title: "Can I use this template for a commercial project?",
-    content:
-      "Absolutely. Our template is open-source, and you can use it for any type of project, including commercial purposes. We encourage users to utilize this template to create and optimize their online projects.",
-  },
-  {
-    title: "Do you offer any customization services?",
-    content:
-      "We accept paid custom development of landing pages. Please contact us via email at weijunext@gmail.com or Twitter @weijunext.",
-  },
-  {
-    title: "Are there any restrictions on using this template?",
-    content:
-      "No. You are free to use and modify this template. At the same time, we encourage developers to submit PRs to help improve this landing page template together.",
-  },
-  {
-    title: "Does this template include SEO optimization features?",
-    content:
-      "Yes, our template includes basic SEO optimization features to help your webpage achieve better rankings in search engines.",
-  },
-  {
-    title: "What should I do if I encounter problems using the template?",
-    content:
-      "If you encounter any issues while using the template, please contact us via Twitter @weijunext.",
+      "We offer 3 free trial opportunities, which should be completely sufficient for individual use.",
   },
 ];
 
 export const FAQS_ZH = [
   {
-    title: "什么是落地页？",
+    title: "我担心我的个人信息安全，你们是如何保护用户隐私的？",
     content:
-      "落地页是为市场营销或广告活动专门创建的独立网页。访问者在点击电子邮件中的链接、Google、Bing、YouTube、Facebook、Instagram、Twitter或网络上类似位置的广告后“降落”到该页面上。与通常具有多个目标并鼓励探索的网页不同，落地页设计有单一焦点或目标，称为行动号召（CTA）。",
+      "我们非常重视用户的隐私保护。所有上传的简历和个人信息都将定期删除，并且我们不会在未经您明确同意的情况下，向第三方透露您的任何信息。",
   },
   {
-    title: "我如何创建一个落地页？",
+    title: "推荐的岗位是否真的适合我？",
     content:
-      "创建落地页可以分几个步骤完成：1) 选择一个适合你活动需求的落地页模板，或从头开始。2) 确定你的落地页目标和CTA。3) 编写吸引访问者采取行动的引人注目的内容。4) 加入与你信息相符的设计元素，如图片、视频和表单。5) 测试你的页面的可用性和移动响应性。6) 使用SEO最佳实践帮助你的页面被发现。7) 发布你的落地页，并监控其性能以根据需要进行调整。",
+      "我们的AI系统会尽可能准确地分析您的简历和兴趣，以推荐最适合您的岗位。但每个人的职业道路都是独一无二的，我们也鼓励用户结合自身实际情况和市场需求，主动探索和甄别机会。",
   },
   {
-    title: "为什么落地页很重要？",
+    title: "推荐的岗位包括哪些行业？",
     content:
-      "落地页对于任何营销策略都至关重要，因为它们提供了一个针对性的平台，用于将访问者转化为潜在客户或客户。与通用网站不同，落地页将访问者的注意力集中在单一优惠上，最小化分心并引导他们向特定行动发展。这种集中的方法可以显著提高你的营销活动的有效性，改善广告性能，并通过为他们提供他们正在寻找的信息或解决方案来增强总体用户体验。",
+      "我们的系统覆盖了广泛的行业领域，包括但不限于IT、金融、教育、医疗健康、媒体传媒等。无论您的专业背景和兴趣所在，都有机会找到合适的岗位推荐。",
   },
   {
-    title: "为什么选择我们的落地页模板？",
+    title: "AI推荐的岗位和我实际的工作经验有偏差怎么办？",
     content:
-      "我们的落地页模板是免费的、开源的且功能强大，非常适合各种项目和市场营销活动。它允许你在不到一小时内创建一个落地页，简化了开发过程，同时也提供了高度的自定义性和响应性。",
+      "我们的AI系统会尽量精确匹配您的工作经验和推荐岗位，但如果存在偏差，您可以手动调整简历中的关键词或者提供更详细的工作经历描述来优化推荐结果。",
   },
   {
-    title: "使用这个模板我需要哪些技能？",
+    title: "如何上传个人简历？上传的简历格式有要求吗？",
     content:
-      "使用我们的落地页模板，你只需要基本的网页编辑技能。该模板的设计旨在让非技术用户轻松上手，同时为有经验的开发者提供高度的自定义能力。",
+      "您可以在我们网站的「控制台」页面找到「上传简历」按钮，点击后选择您的简历文件上传。我们支持上传PDF格式的简历。",
   },
   {
-    title: "我如何开始使用落地页模板？",
-    content:
-      "开始非常简单。只需从我们的GitHub仓库下载源代码，根据需要编辑文本和图片，然后将其部署到你的服务器上。",
-  },
-  {
-    title: "落地页模板支持响应式设计吗？",
-    content:
-      "是的，我们的落地页模板支持响应式设计，确保你的网页在桌面、平板或智能手机等各种设备上完美显示。",
-  },
-  {
-    title: "我可以将这个模板用于商业项目吗？",
-    content:
-      "绝对可以。我们的模板是开源的，你可以将其用于任何类型的项目，包括商业用途。我们鼓励用户利用这个模板来创建和优化他们的在线项目。",
-  },
-  {
-    title: "你们提供定制服务吗？",
-    content:
-      "我们接受落地页的定制开发服务。请通过电子邮件weijunext@gmail.com或Twitter @weijunext与我们联系。",
-  },
-  {
-    title: "使用这个模板有任何限制吗？",
-    content:
-      "没有。你可以自由使用和修改这个模板。同时，我们鼓励开发者提交PR来共同帮助改进这个落地页模板。",
-  },
-  {
-    title: "这个模板包括SEO优化功能吗？",
-    content:
-      "是的，我们的模板包含基本的SEO优化功能，帮助你的网页在搜索引擎中获得更好的排名。",
-  },
-  {
-    title: "如果我在使用模板时遇到问题该怎么办？",
-    content:
-      "如果你在使用模板时遇到任何问题，请通过Twitter @weijunext 与我们联系。",
+    title: " 使用这个服务需要支付费用吗？",
+    content: "我们提供了3次的免费试用机会，对于个人使用是完全足够的。",
   },
 ];
 
@@ -151,12 +93,14 @@ export const FAQS_JA = [
       "当社のランディングページテンプレートを使用するには、基本的なウェブ編集スキルだけが必要です。このテンプレートのデザインは、技術的でないユーザーが簡単に始められるように意図されていますが、経験豊富な開発者にも高いカスタマイズ性を提供します。",
   },
   {
-    title: "ランディングページテンプレートを使い始めるにはどうすればいいですか？",
+    title:
+      "ランディングページテンプレートを使い始めるにはどうすればいいですか？",
     content:
       "始めるのは非常に簡単です。GitHubリポジトリからソースコードをダウンロードし、必要に応じてテキストや画像を編集してから、サーバーにデプロイします。",
   },
   {
-    title: "ランディングページテンプレートはレスポンシブデザインに対応していますか？",
+    title:
+      "ランディングページテンプレートはレスポンシブデザインに対応していますか？",
     content:
       "はい、当社のランディングページテンプレートはレスポンシブデザインに対応しており、デスクトップ、タブレット、スマートフォンなど、さまざまなデバイスで完璧に表示されます。",
   },
@@ -186,7 +130,6 @@ export const FAQS_JA = [
       "テンプレートの使用中に問題が発生した場合は、Twitter @weijunextでお問い合わせください。",
   },
 ];
-
 
 export const FAQS_AR = [
   {
@@ -371,7 +314,8 @@ export const FAQS_RU = [
       "Да, наш шаблон включает базовые функции оптимизации SEO, чтобы помочь вашей веб-странице достичь лучших позиций в поисковых системах.",
   },
   {
-    title: "Что мне делать, если я столкнусь с проблемами при использовании шаблона?",
+    title:
+      "Что мне делать, если я столкнусь с проблемами при использовании шаблона?",
     content:
       "Если вы столкнетесь с какими-либо проблемами при использовании шаблона, пожалуйста, свяжитесь с нами через Twitter @weijunext.",
   },
@@ -390,4 +334,4 @@ export const ALL_FAQS: FAQSCollection = {
   FAQS_AR,
   FAQS_ES,
   FAQS_RU,
-}
+};
