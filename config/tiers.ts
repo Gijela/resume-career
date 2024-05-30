@@ -8,7 +8,7 @@ export const TIERS_EN: Array<Tier> = [
     price: "$0",
     description: "Increase 3 Credits, never expires.",
     features: ["Free", "3 Credits", "Access all functions", "3 trials"],
-    buttonText: "Start",
+    buttonText: "begin explore",
     buttonColor: "secondary",
     buttonVariant: "solid",
   },

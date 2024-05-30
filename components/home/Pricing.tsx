@@ -15,6 +15,7 @@ import { createPaySession } from "@/lib/createPaySession";
 import { openUrlInNewTab } from "@/lib/utils";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import { FaCheck } from "react-icons/fa";
 import { RoughNotation } from "react-rough-notation";
 
@@ -33,7 +34,11 @@ const Pricing = ({
   const TIERS = ALL_TIERS[`TIERS_${langName.toUpperCase()}`];
 
   const handlePay = async (creditAmount: number, priceId: string) => {
-    if (!user?.id || !langName || !creditAmount || !priceId) return;
+    if (!user?.id) {
+      toast.error(langName === "zh" ? "请先登录~" : "Please sign in first");
+      return;
+    }
+    if (!langName || !creditAmount || !priceId) return;
 
     const url = await createPaySession(
       user.id,
@@ -92,25 +97,23 @@ const Pricing = ({
                 ))}
               </ul>
             </CardBody>
-            {user && user.id && (
-              <CardFooter>
-                <Button
-                  fullWidth
-                  className="rounded-lg"
-                  color={tier.buttonColor}
-                  variant={tier.buttonVariant}
-                  onClick={() => {
-                    if (idx === 0) {
-                      router.push(`/${langName}/dashboard`);
-                    } else {
-                      handlePay(tier.creditAmount!, tier.priceId!);
-                    }
-                  }}
-                >
-                  {tier.buttonText}
-                </Button>
-              </CardFooter>
-            )}
+            <CardFooter>
+              <Button
+                fullWidth
+                className="rounded-lg"
+                color={tier.buttonColor}
+                variant={tier.buttonVariant}
+                onClick={() => {
+                  if (idx === 0) {
+                    router.push(`/${langName}/dashboard`);
+                  } else {
+                    handlePay(tier.creditAmount!, tier.priceId!);
+                  }
+                }}
+              >
+                {tier.buttonText}
+              </Button>
+            </CardFooter>
           </Card>
         ))}
       </div>
