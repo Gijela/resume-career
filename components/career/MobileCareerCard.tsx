@@ -82,6 +82,12 @@ export function MobileCareerCard({
               </div>
               <div className="flex justify-between">
                 <div className="font-light">
+                  {careerNodeLocale[lang]?.salarySource}:
+                </div>
+                <div className="font-medium text-lg">boss</div>
+              </div>
+              <div className="flex justify-between">
+                <div className="font-light">
                   {careerNodeLocale[lang]?.difficulty}:
                 </div>
                 <div

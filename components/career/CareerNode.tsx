@@ -30,6 +30,7 @@ type CareerNodeProps = {
   whyItsagoodfit?: string[];
   roadmap?: { [key: string]: string }[];
   salarySource?: string;
+  salaryUrl?: string;
 };
 
 export const careerNodeLocale: Partial<Record<TypeLocale, TypeI18nData>> = {
@@ -81,6 +82,7 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
     whyItsagoodfit,
     roadmap,
     salarySource,
+    salaryUrl,
   } = data;
   const position = connectPosition === "top" ? Position.Top : Position.Bottom;
 
@@ -109,7 +111,7 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="border-[2px] border-blue-700 rounded-2xl py-4 px-7 max-w-[350px] bg-gray-50 dark:bg-gray-800">
+        <div className="border-[2px] border-blue-700 rounded-2xl py-4 px-7 max-w-[350px] bg-gray-50 dark:bg-gray-800 cursor-pointer">
           <Handle type="target" position={position} />
           <h1 className="text-2xl font-bold mb-2">{jobTitle}</h1>
           <p className="mb-4 font-light">{jobDescription}</p>
@@ -124,13 +126,13 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
               <div className="font-light">
                 {careerNodeLocale[getLang() || defaultLocale]?.salary}:
               </div>
-              <div className="font-medium text-lg">{salary}</div>
+              <div className="font-medium text-lg text-blue-500">{salary}</div>
             </div>
             <div className="flex justify-between">
               <div className="font-light">
                 {careerNodeLocale[getLang() || defaultLocale]?.salarySource}:
               </div>
-              <div className="font-medium text-lg">{salarySource}</div>
+              <div className="font-medium text-lg">boss</div>
             </div>
             <div className="flex justify-between">
               <div className="font-light">
@@ -160,8 +162,10 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
                 <span className="border rounded-3xl border-gray-200 px-3 py-1 text-sm">
                   {timeline}
                 </span>
-                <span className="border rounded-3xl border-gray-200 px-3 py-1 text-sm">
-                  {salary}
+                <span className="border rounded-3xl border-gray-200 px-3 py-1 text-sm text-blue-500 cursor-pointer">
+                  <a href={salarySource || salaryUrl} target="_blank">
+                    {salary}
+                  </a>
                 </span>
                 <span
                   className={`border rounded-3xl border-gray-200 px-3 py-1 text-sm font-semibold ${
