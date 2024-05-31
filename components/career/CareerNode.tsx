@@ -42,7 +42,7 @@ export const careerNodeLocale: Partial<Record<TypeLocale, TypeI18nData>> = {
     question_head_first: "What's a ",
     question_head_second: "Why it's a good fit",
     roadmap: "Roadmap",
-    salarySource: "salary Source",
+    salarySource: "SALARY Source",
     close: "close modal",
     chat: "get resource from AI",
   },
@@ -128,12 +128,14 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
               </div>
               <div className="font-medium text-lg text-blue-500">{salary}</div>
             </div>
-            <div className="flex justify-between">
-              <div className="font-light">
-                {careerNodeLocale[getLang() || defaultLocale]?.salarySource}:
+            {getLang() === "zh" && (
+              <div className="flex justify-between">
+                <div className="font-light">
+                  {careerNodeLocale[getLang() || defaultLocale]?.salarySource}:
+                </div>
+                <div className="font-medium text-lg">boss</div>
               </div>
-              <div className="font-medium text-lg">boss</div>
-            </div>
+            )}
             <div className="flex justify-between">
               <div className="font-light">
                 {careerNodeLocale[getLang() || defaultLocale]?.difficulty}:
@@ -162,10 +164,18 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
                 <span className="border rounded-3xl border-gray-200 px-3 py-1 text-sm">
                   {timeline}
                 </span>
-                <span className="border rounded-3xl border-gray-200 px-3 py-1 text-sm text-blue-500 cursor-pointer">
-                  <a href={salarySource || salaryUrl} target="_blank">
-                    {salary}
-                  </a>
+                <span className="border rounded-3xl border-gray-200 px-3 py-1 text-sm">
+                  {getLang() === "zh" ? (
+                    <a
+                      href={salarySource || salaryUrl}
+                      target="_blank"
+                      className="text-blue-500 cursor-pointer"
+                    >
+                      {salary}
+                    </a>
+                  ) : (
+                    <>{salary}</>
+                  )}
                 </span>
                 <span
                   className={`border rounded-3xl border-gray-200 px-3 py-1 text-sm font-semibold ${

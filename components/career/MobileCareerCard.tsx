@@ -80,12 +80,14 @@ export function MobileCareerCard({
                   {job?.salary}
                 </div>
               </div>
-              <div className="flex justify-between">
-                <div className="font-light">
-                  {careerNodeLocale[lang]?.salarySource}:
+              {lang === "zh" && (
+                <div className="flex justify-between">
+                  <div className="font-light">
+                    {careerNodeLocale[lang]?.salarySource}:
+                  </div>
+                  <div className="font-medium text-lg">boss</div>
                 </div>
-                <div className="font-medium text-lg">boss</div>
-              </div>
+              )}
               <div className="flex justify-between">
                 <div className="font-light">
                   {careerNodeLocale[lang]?.difficulty}:
@@ -117,10 +119,18 @@ export function MobileCareerCard({
                 <span className="border rounded-3xl border-gray-200 px-3 py-1 text-sm">
                   {job?.timeline}
                 </span>
-                <span className="border rounded-3xl border-gray-200 px-3 py-1 text-sm text-blue-500 cursor-pointer">
-                  <a href={job?.salarySource || job?.salaryUrl} target="_blank">
-                    {job?.salary}
-                  </a>
+                <span className="border rounded-3xl border-gray-200 px-3 py-1 text-sm">
+                  {lang === "zh" ? (
+                    <a
+                      href={job?.salarySource || job?.salaryUrl}
+                      target="_blank"
+                      className="text-blue-500 cursor-pointer"
+                    >
+                      {job?.salary}
+                    </a>
+                  ) : (
+                    <>{job?.salary}</>
+                  )}
                 </span>
                 <span
                   className={`border rounded-3xl border-gray-200 px-3 py-1 text-sm font-semibold ${
