@@ -1,11 +1,9 @@
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request, res: Response) {
-  const { messages, lang } = await req.json();
-  const baseURL =
-    lang === "zh" ? process.env.KIMI_BASE_URL : process.env.GPT_BASE_URL;
-  const ApiKey =
-    lang === "zh" ? process.env.KIMI_APIKEY : process.env.GPT_ApiKey;
+  const { messages } = await req.json();
+  const baseURL = process.env.KIMI_BASE_URL;
+  const ApiKey = process.env.KIMI_APIKEY;
 
   if (!baseURL || !ApiKey) {
     return NextResponse.json(
@@ -26,7 +24,7 @@ export async function POST(req: Request, res: Response) {
       },
       body: JSON.stringify({
         messages: messages,
-        model: lang === "zh" ? "moonshot-v1-128k" : "gpt-3.5-turbo",
+        model: "moonshot-v1-128k",
         stream: true,
       }),
     });

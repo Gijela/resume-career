@@ -8,8 +8,9 @@ import { Markdown } from "./markdownRender/markdown";
 const msgFormHeight = 130;
 
 const MessagesList = () => {
-  const { connectStatus, messages, learnTarget, addMessage } = useMessages();
+  const { connectStatus, messages } = useMessages();
   const loadingRef = useRef<HTMLDivElement>(null);
+  const GenerateRef = useRef<HTMLDivElement>(null);
   const { headerHeight } = useHeaderHeight();
   const [maxListHeight, setMaxListHeight] = useState<number>(0);
 
@@ -29,10 +30,11 @@ const MessagesList = () => {
   }, [connectStatus]);
 
   useEffect(() => {
-    if (learnTarget && messages && messages.length === 2) {
-      addMessage(learnTarget);
-    }
-  }, [learnTarget]);
+    GenerateRef?.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, [messages]);
 
   return (
     <div className="flex flex-col self-stretch bg-slate-50 dark:bg-inherit dark:border-t dark:border-gray-800">
@@ -102,7 +104,25 @@ const MessagesList = () => {
           </div>
         )}
         {/* 流式信息未获得'data: [DONE]'时显示 */}
-        <GeneratingMessage />
+        {connectStatus === SSE_Status_Map.OPEN && (
+          <div
+            ref={GenerateRef}
+            className={`flex mb-3 fade-up justify-start`}
+            key={"x"}
+          >
+            <img
+              src={"/gpt.png"}
+              className="mr-4 w-9 h-9 rounded-full"
+              alt="avatar"
+            />
+            <div
+              style={{ maxWidth: "calc(100% - 45px)" }}
+              className={`mr-16 group relative px-3 py-2 rounded-lg bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 dark:text-white`}
+            >
+              <GeneratingMessage />
+            </div>
+          </div>
+        )}
       </div>
       {maxListHeight && (
         <div style={{ height: msgFormHeight }}>

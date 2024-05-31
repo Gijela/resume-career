@@ -71,6 +71,12 @@ export function MessagesProvider({ children }: IMessagesProvider) {
   //   setMessages([systemMessage, welcomeMessage]);
   // }, []);
 
+  useEffect(() => {
+    if (messages.length === 2 && learnTarget) {
+      addMessage(learnTarget);
+    }
+  }, [messages, learnTarget]);
+
   const closeSSEConnect = () => {
     // controllerSSE?.abort()
     setConnectStatus(SSE_Status_Map.CLOSED);
@@ -104,7 +110,7 @@ export function MessagesProvider({ children }: IMessagesProvider) {
 
       setConnectStatus(SSE_Status_Map.CONNECTING);
       let replyTextTemp = "";
-      fetchEventSource("/api/chat/gpt", {
+      fetchEventSource("/api/chat", {
         method: "POST",
         body: JSON.stringify({
           messages: newMessages,
@@ -142,21 +148,12 @@ export function MessagesProvider({ children }: IMessagesProvider) {
         onmessage: function (event) {
           if (event.data === "[DONE]") return;
           const eventMessage = JSON.parse(event.data);
-          if ((getLang() || defaultLocale) === "zh") {
-            const streamMessage = eventMessage.choices[0]?.delta as {
-              role: string;
-              content: string;
-            };
-            replyTextTemp += streamMessage.content;
-            setReplyText(replyTextTemp);
-          } else {
-            // streamMessage.content 是完整的消息
-            const streamMessage = eventMessage.choices[0]?.message as {
-              role: string;
-              content: string;
-            };
-            setReplyText(streamMessage.content);
-          }
+          const streamMessage = eventMessage.choices[0]?.delta as {
+            role: string;
+            content: string;
+          };
+          replyTextTemp += streamMessage.content;
+          setReplyText(replyTextTemp);
         },
         onclose() {
           closeSSEConnect();
