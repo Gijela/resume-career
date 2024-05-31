@@ -69,35 +69,35 @@ const sixCareerLocale = ({
         "jobTitle": "用户体验设计师",
         "jobDescription": "创建以用户为中心的设计解决方案, 以提高产品的可用性和用户体验。",
         "timeline": "3-6 months",
-        "salary": "$85k - $110k",
+        "salary": "￥15k-￥30k",
         "difficulty": "Medium"
         },
         {
         "jobTitle": "数字营销专员",
         "jobDescription": "开发和实施在线营销活动, 以推动业务增长。",
         "timeline": "2-4 months",
-        "salary": "$50k - $70k",
+        "salary": "￥15k-￥30k",
         "difficulty": "Low"
         },
         {
         "jobTitle": "软件工程师",
         "jobDescription": "设计、开发和测试软件应用程序以满足业务需求。",
         "timeline": "6-12 months",
-        "salary": "$100k - $140k",
+        "salary": "￥15k-￥30k",
         "difficulty": "High"
         },
         {
         "jobTitle": "经营分析",
         "jobDescription": "分析业务需求并开发解决方案以改善运营和流程。",
         "timeline": "3-6 months",
-        "salary": "$65k - $90k",
+        "salary": "￥15k-￥30k",
         "difficulty": "Medium"
         },
         {
         "jobTitle": "网络安全专家",
         "jobDescription": "通过开发和实施安全协议, 保护计算机系统和网络免受网络威胁。",
         "timeline": "6-12 months",
-        "salary": "$80k - $120k",
+        "salary": "￥15k-￥30k",
         "difficulty": "High"
         }
         ]
@@ -110,7 +110,7 @@ const sixCareerLocale = ({
       <additionalContext>
       ${context}
       </additionalContext>
-
+      希望每一个数据项的salary都去boss直聘或其他招聘网站搜索薪资填入，同时要给出salary值的来源网址url，这个数据项命名为salarySource。
       只用 JSON 响应, 别的什么都不要说。
     `,
   } as Record<Partial<TypeLocale>, string>,

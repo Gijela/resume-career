@@ -25,6 +25,8 @@ export interface finalCareerInfo {
   aboutTheRole: string;
   whyItsagoodfit: string[];
   roadmap: { [key: string]: string }[];
+  salarySource?: string;
+  salaryUrl?: string;
 }
 
 export type TResumeItem = {

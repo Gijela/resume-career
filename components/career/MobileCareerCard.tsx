@@ -19,6 +19,8 @@ import {
 } from "@/components/chat/MessagesProvider";
 import {
   AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogTitle,
@@ -57,7 +59,7 @@ export function MobileCareerCard({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Card className="border-blue-600 rounded-2xl">
+        <Card className="border-blue-600 rounded-2xl cursor-pointer">
           <CardHeader>
             <CardTitle>{job?.jobTitle}</CardTitle>
             <CardDescription>{job?.jobDescription}</CardDescription>
@@ -74,7 +76,9 @@ export function MobileCareerCard({
                 <div className="font-light">
                   {careerNodeLocale[lang]?.salary}:
                 </div>
-                <div className="font-medium text-lg">{job?.salary}</div>
+                <div className="font-medium text-lg text-blue-500">
+                  {job?.salary}
+                </div>
               </div>
               <div className="flex justify-between">
                 <div className="font-light">
@@ -107,8 +111,10 @@ export function MobileCareerCard({
                 <span className="border rounded-3xl border-gray-200 px-3 py-1 text-sm">
                   {job?.timeline}
                 </span>
-                <span className="border rounded-3xl border-gray-200 px-3 py-1 text-sm">
-                  {job?.salary}
+                <span className="border rounded-3xl border-gray-200 px-3 py-1 text-sm text-blue-500 cursor-pointer">
+                  <a href={job?.salarySource || job?.salaryUrl} target="_blank">
+                    {job?.salary}
+                  </a>
                 </span>
                 <span
                   className={`border rounded-3xl border-gray-200 px-3 py-1 text-sm font-semibold ${
@@ -193,6 +199,17 @@ export function MobileCareerCard({
             </div>
           </div>
         </div>
+
+        <AlertDialogCancel>{careerNodeLocale[lang]?.close}</AlertDialogCancel>
+        {job?.roadmap?.length && (
+          <AlertDialogAction
+            onClick={() =>
+              handleClickRoadStep(Object.values(job?.roadmap![0])[0])
+            }
+          >
+            {careerNodeLocale[lang]?.chat}
+          </AlertDialogAction>
+        )}
       </AlertDialogContent>
     </AlertDialog>
   );

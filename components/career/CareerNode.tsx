@@ -29,6 +29,7 @@ type CareerNodeProps = {
   aboutTheRole?: string;
   whyItsagoodfit?: string[];
   roadmap?: { [key: string]: string }[];
+  salarySource?: string;
 };
 
 export const careerNodeLocale: Partial<Record<TypeLocale, TypeI18nData>> = {
@@ -40,6 +41,9 @@ export const careerNodeLocale: Partial<Record<TypeLocale, TypeI18nData>> = {
     question_head_first: "What's a ",
     question_head_second: "Why it's a good fit",
     roadmap: "Roadmap",
+    salarySource: "salary Source",
+    close: "close modal",
+    chat: "get resource from AI",
   },
   zh: {
     timeline: "时间线",
@@ -49,6 +53,9 @@ export const careerNodeLocale: Partial<Record<TypeLocale, TypeI18nData>> = {
     question_head_first: "什么是",
     question_head_second: "为什么合适",
     roadmap: "学习路线",
+    salarySource: "薪资来源",
+    close: "关闭弹窗",
+    chat: "与AI获取资源",
   },
 };
 
@@ -73,6 +80,7 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
     aboutTheRole,
     whyItsagoodfit,
     roadmap,
+    salarySource,
   } = data;
   const position = connectPosition === "top" ? Position.Top : Position.Bottom;
 
@@ -117,6 +125,12 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
                 {careerNodeLocale[getLang() || defaultLocale]?.salary}:
               </div>
               <div className="font-medium text-lg">{salary}</div>
+            </div>
+            <div className="flex justify-between">
+              <div className="font-light">
+                {careerNodeLocale[getLang() || defaultLocale]?.salarySource}:
+              </div>
+              <div className="font-medium text-lg">{salarySource}</div>
             </div>
             <div className="flex justify-between">
               <div className="font-light">
