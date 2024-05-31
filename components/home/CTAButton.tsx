@@ -16,7 +16,7 @@ const CTAButton = ({ locale }: { locale: { title: string } }) => {
     const lang = pathname.split("/")[1] || defaultLocale;
     Router.push(
       `/${lang}/career/${
-        lang === "zh" ? "E3arouR3XF5Asky7" : "WQd2GpFgZeNZejsW"
+        lang === "zh" ? "SSyYnryjBm3bzyMh" : "RKZCuK5zoCerwYRG"
       }`
     );
   };

@@ -105,11 +105,7 @@ const MessagesList = () => {
         )}
         {/* 流式信息未获得'data: [DONE]'时显示 */}
         {connectStatus === SSE_Status_Map.OPEN && (
-          <div
-            ref={GenerateRef}
-            className={`flex mb-3 fade-up justify-start`}
-            key={"x"}
-          >
+          <div ref={GenerateRef} className={`flex mb-3 fade-up justify-start`}>
             <img
               src={"/gpt.png"}
               className="mr-4 w-9 h-9 rounded-full"

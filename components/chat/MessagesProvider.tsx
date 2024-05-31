@@ -12,6 +12,7 @@ export interface ChatCompletionRequestMessage {
   content: string;
 }
 
+import { usePathname } from "next/navigation";
 import {
   Dispatch,
   ReactNode,
@@ -53,9 +54,10 @@ export function MessagesProvider({ children }: IMessagesProvider) {
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
   const [connectStatus, setConnectStatus] = useState<number>(-1); // SSE_Status_Map
   const [controllerSSE, setControllerSSE] = useState<AbortController>(
-    {} as unknown as AbortController
+    new AbortController()
   );
   const [learnTarget, setLearnTarget] = useState<string>("");
+  const pathname = usePathname();
   // // 初始化
   // useEffect(() => {
   //   const lang = (getLang() || defaultLocale) as "en" | "zh";
@@ -70,6 +72,16 @@ export function MessagesProvider({ children }: IMessagesProvider) {
   //   };
   //   setMessages([systemMessage, welcomeMessage]);
   // }, []);
+
+  // [损耗性能]需求是从chat页面出来都手动关闭一下sse连接，
+  // 但是监听不到从chat页面离开事件，只能监听所有的路径变化，
+  // 只对进入/chat路径不断开SSE连接，进入其他路径都手动断开SSE
+  useEffect(() => {
+    if (pathname.split("/")[2] !== "chat") {
+      controllerSSE?.abort();
+      closeSSEConnect();
+    }
+  }, [pathname]);
 
   useEffect(() => {
     if (messages.length === 2 && learnTarget) {
