@@ -103,9 +103,13 @@ export function MessagesProvider({ children }: IMessagesProvider) {
       setControllerSSE(newControllerSSE);
 
       setConnectStatus(SSE_Status_Map.CONNECTING);
+      let replyTextTemp = "";
       fetchEventSource("/api/chat/gpt", {
         method: "POST",
-        body: JSON.stringify({ messages: newMessages }),
+        body: JSON.stringify({
+          messages: newMessages,
+          lang: (getLang() || defaultLocale) as "en" | "zh",
+        }),
         signal: newControllerSSE.signal,
         openWhenHidden: true,
         onopen: async function (res) {
@@ -138,12 +142,21 @@ export function MessagesProvider({ children }: IMessagesProvider) {
         onmessage: function (event) {
           if (event.data === "[DONE]") return;
           const eventMessage = JSON.parse(event.data);
-          // streamMessage.content 是完整的消息
-          const streamMessage = eventMessage.choices[0]?.message as {
-            role: string;
-            content: string;
-          };
-          setReplyText(streamMessage.content);
+          if ((getLang() || defaultLocale) === "zh") {
+            const streamMessage = eventMessage.choices[0]?.delta as {
+              role: string;
+              content: string;
+            };
+            replyTextTemp += streamMessage.content;
+            setReplyText(replyTextTemp);
+          } else {
+            // streamMessage.content 是完整的消息
+            const streamMessage = eventMessage.choices[0]?.message as {
+              role: string;
+              content: string;
+            };
+            setReplyText(streamMessage.content);
+          }
         },
         onclose() {
           closeSSEConnect();
