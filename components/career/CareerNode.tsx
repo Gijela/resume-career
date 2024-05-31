@@ -29,8 +29,6 @@ type CareerNodeProps = {
   aboutTheRole?: string;
   whyItsagoodfit?: string[];
   roadmap?: { [key: string]: string }[];
-  salarySource?: string;
-  salaryUrl?: string;
 };
 
 export const careerNodeLocale: Partial<Record<TypeLocale, TypeI18nData>> = {
@@ -81,8 +79,6 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
     aboutTheRole,
     whyItsagoodfit,
     roadmap,
-    salarySource,
-    salaryUrl,
   } = data;
   const position = connectPosition === "top" ? Position.Top : Position.Bottom;
 
@@ -167,7 +163,7 @@ function CareerNode({ data }: NodeProps<CareerNodeProps>) {
                 <span className="border rounded-3xl border-gray-200 px-3 py-1 text-sm">
                   {getLang() === "zh" ? (
                     <a
-                      href={salarySource || salaryUrl}
+                      href={`https://www.zhipin.com/web/geek/job?query=${jobTitle}`}
                       target="_blank"
                       className="text-blue-500 cursor-pointer"
                     >

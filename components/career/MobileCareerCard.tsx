@@ -85,7 +85,7 @@ export function MobileCareerCard({
                   <div className="font-light">
                     {careerNodeLocale[lang]?.salarySource}:
                   </div>
-                  <div className="font-medium text-lg">boss</div>
+                  <div className="font-medium text-lg">boss直聘</div>
                 </div>
               )}
               <div className="flex justify-between">
@@ -122,7 +122,7 @@ export function MobileCareerCard({
                 <span className="border rounded-3xl border-gray-200 px-3 py-1 text-sm">
                   {lang === "zh" ? (
                     <a
-                      href={job?.salarySource || job?.salaryUrl}
+                      href={`https://www.zhipin.com/web/geek/job?query=${job?.jobTitle}`}
                       target="_blank"
                       className="text-blue-500 cursor-pointer"
                     >

@@ -110,7 +110,6 @@ const sixCareerLocale = ({
       <additionalContext>
       ${context}
       </additionalContext>
-      希望每一个数据项的salary都去boss直聘或其他招聘网站搜索薪资填入，同时要给出salary值的来源网址url，这个数据项命名为salarySource。
       只用 JSON 响应, 别的什么都不要说。
     `,
   } as Record<Partial<TypeLocale>, string>,
