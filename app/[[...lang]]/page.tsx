@@ -1,3 +1,4 @@
+import VideoDemo from "@/components/VideoDemo";
 import CTA from "@/components/home/CTA";
 import FAQ from "@/components/home/FAQ";
 import Hero from "@/components/home/Hero";
@@ -27,7 +28,7 @@ export default async function LangHome({
 
       {/* USP (Unique Selling Proposition) */}
       {/* <Feature id="Features" locale={dict.Feature} langName={langName} /> */}
-
+      <VideoDemo lang={langName as "en" | "zh"} />
       {/* Pricing */}
       <Pricing id="Pricing" locale={dict.Pricing} langName={langName} />
 

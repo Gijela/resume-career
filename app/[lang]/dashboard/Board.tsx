@@ -61,7 +61,7 @@ export default function DashBoard({
   return (
     <div>
       <div className="sm:px-10 pt-4 sm:pt-8 flex justify-center items-center flex-col ">
-        <h1 className="text-center text-5xl mb-5 font-bold">
+        <h1 className="text-center text-5xl mb-5 font-bold px-4 box-border">
           {dashBoard.title}
         </h1>
         <p className="px-4 sm:px-0 mb-4 sm:mb-12 text-center text-gray-600 sm:max-w-3xl">
@@ -120,7 +120,7 @@ export default function DashBoard({
         {/* list */}
         {resumeList && resumeList.length > 0 && (
           <>
-            <h1 className="pt-8 text-center text-5xl mb-5 font-bold">
+            <h1 className="pt-8 text-center text-5xl mb-5 font-bold px-4 box-border">
               {dashBoard.selectList_title}
             </h1>
 
